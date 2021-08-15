@@ -55,7 +55,7 @@ export const createProduct = ({
 
   try {
     const { data } = await axios.post(
-      `client/invoices/${invoice}/product`,
+      `deliveryorders/${invoice}/product`,
       model
     );
 

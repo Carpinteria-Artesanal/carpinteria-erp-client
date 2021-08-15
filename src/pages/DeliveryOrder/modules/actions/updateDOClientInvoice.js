@@ -49,7 +49,7 @@ export const updateDOClientInvoice = ({
 
   try {
     await axios.patch(
-      `client/invoices/${id}/deliveryOrder/${deliveryOrderId}`,
+      `deliveryorders/${id}/deliveryOrder/${deliveryOrderId}`,
       { date: format.dateToSend(date) },
     );
 

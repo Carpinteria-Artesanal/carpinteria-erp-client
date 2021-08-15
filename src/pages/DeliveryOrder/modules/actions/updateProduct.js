@@ -59,7 +59,7 @@ export const updateProduct = ({
 
   try {
     const { data } = await axios.patch(
-      `client/invoices/${invoice}/product/${product}`,
+      `deliveryorders/${invoice}/product/${product}`,
       model,
     );
 

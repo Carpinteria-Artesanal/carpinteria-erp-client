@@ -42,7 +42,7 @@ export const deleteClientInvoice = (id, callback) => async dispatch => {
   dispatch(_deleteClientInvoiceRequest());
 
   try {
-    await axios.delete(`client/invoices/${id}`);
+    await axios.delete(`deliveryorders/${id}`);
 
     dispatch(_deleteClientInvoiceSuccess());
     callback();

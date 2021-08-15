@@ -51,7 +51,7 @@ export const confirmInvoice = id => async dispatch => {
   dispatch(_confirmInvoiceRequest());
 
   try {
-    const { data } = await axios.patch(`client/invoices/${id}/confirm`);
+    const { data } = await axios.patch(`deliveryorders/${id}/confirm`);
 
     dispatch(_confirmInvoiceSuccess());
     dispatch(_confirmInvoiceSet(data));

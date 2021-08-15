@@ -56,7 +56,7 @@ export const deleteProduct = (
 
   try {
     const { data } = await axios.delete(
-      `client/invoices/${invoice}/product/${product}`,
+      `deliveryorders/${invoice}/product/${product}`,
     );
 
     dispatch(_deleteProductSuccess());

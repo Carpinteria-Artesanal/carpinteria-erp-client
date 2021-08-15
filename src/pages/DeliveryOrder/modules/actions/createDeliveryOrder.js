@@ -51,7 +51,7 @@ export const createDeliveryOrder = id => async dispatch => {
   dispatch(_createDeliveryOrderRequest());
 
   try {
-    const { data } = await axios.post(`client/invoices/${id}/deliveryOrder`);
+    const { data } = await axios.post(`deliveryorders/${id}/deliveryOrder`);
 
     dispatch(_createDeliveryOrderSuccess());
     dispatch(_createDeliveryOrderSet(data));

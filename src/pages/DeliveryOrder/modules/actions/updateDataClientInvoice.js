@@ -58,7 +58,7 @@ export const updateDataClientInvoice = (id, newData, callback) => async dispatch
   dispatch(_updateDataClientInvoiceRequest());
 
   try {
-    const { data } = await axios.patch(`client/invoices/${id}`, newData);
+    const { data } = await axios.patch(`deliveryorders/${id}`, newData);
 
     dispatch(_updateDataClientInvoiceSuccess());
     dispatch(_updateDataClientInvoiceSet(data));

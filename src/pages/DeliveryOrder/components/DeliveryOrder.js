@@ -10,12 +10,12 @@ import {
   LoadingScreen, Page, DeleteProductInvoiceModal, ProductsInvoice,
 } from 'components';
 import ProductOrderModal from '../modals/ProductOrderModal/ProductOrderModalContainer';
-import { useStyles } from './ClientInvoice.styles';
+import { useStyles } from './DeliveryOrder.styles';
 import ClientInvoiceCards from './ClientInvoiceCards';
 import Header from './Header';
 
-const ClientInvoice = ({
-  getClientInvoice,
+const DeliveryOrder = ({
+  getDeliveryOrder,
   _id,
   nameClient,
   client,
@@ -31,14 +31,14 @@ const ClientInvoice = ({
   products,
   deleteProduct,
 }) => {
-  const { idInvoice } = useParams();
+  const { idDeliveryOrder } = useParams();
   const [deleteId, setDeleteId] = useState(undefined);
   const [editId, setEditId] = useState(false);
   const classes = useStyles();
 
   useEffect(() => {
-    if (idInvoice && idInvoice !== _id) getClientInvoice(idInvoice);
-  }, [idInvoice]);
+    if (idDeliveryOrder && idDeliveryOrder !== _id) getDeliveryOrder(idDeliveryOrder);
+  }, [idDeliveryOrder]);
 
   useEffect(() => {
     getProducts();
@@ -65,13 +65,13 @@ const ClientInvoice = ({
   if (!_id) return <LoadingScreen />;
 
   return (
-    <Page className={classes.root} title={`${nameClient} | Factura`}>
+    <Page className={classes.root} title={`${nameClient} | Albarán`}>
       <Container maxWidth={false}>
         <Header
           client={client}
           nameClient={nameClient}
           createDeliveryOrder={createDeliveryOrder}
-          id={idInvoice}
+          id={idDeliveryOrder}
           nInvoice={nInvoice}
         />
 
@@ -86,7 +86,7 @@ const ClientInvoice = ({
           taxBase={taxBase}
           iva={iva}
           date={date}
-          id={idInvoice}
+          id={idDeliveryOrder}
           updateDataClientInvoice={updateDataClientInvoice}
           nInvoice={nInvoice}
         />
@@ -106,8 +106,8 @@ const ClientInvoice = ({
   );
 };
 
-ClientInvoice.propTypes = {
-  getClientInvoice: PropTypes.func.isRequired,
+DeliveryOrder.propTypes = {
+  getDeliveryOrder: PropTypes.func.isRequired,
   _id: PropTypes.string,
   nameClient: PropTypes.string,
   client: PropTypes.string,
@@ -124,6 +124,6 @@ ClientInvoice.propTypes = {
   deleteProduct: PropTypes.func.isRequired,
 };
 
-ClientInvoice.displayName = 'ClientInvoice';
-export const story = ClientInvoice;
-export default memo(ClientInvoice);
+DeliveryOrder.displayName = 'ClientInvoice';
+export const story = DeliveryOrder;
+export default memo(DeliveryOrder);

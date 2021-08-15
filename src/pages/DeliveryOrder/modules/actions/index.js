@@ -4,7 +4,7 @@ export * from './createProduct';
 export * from './deleteClientInvoice';
 export * from './deleteDOClientInvoice';
 export * from './deleteProduct';
-export * from './getClientInvoice';
+export * from './getDeliveryOrder';
 export * from './updateDataClientInvoice';
 export * from './updateDOClientInvoice';
 export * from './updateProduct';

@@ -60,7 +60,7 @@ export const deleteDOClientInvoice = (
 
   try {
     await axios.delete(
-      `client/invoices/${id}/deliveryOrder/${deliveryOrderId}`,
+      `deliveryorders/${id}/deliveryOrder/${deliveryOrderId}`,
     );
 
     dispatch(_deleteDOClientInvoiceSuccess());
