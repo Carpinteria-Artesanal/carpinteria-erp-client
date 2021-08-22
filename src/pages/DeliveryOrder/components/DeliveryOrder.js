@@ -11,7 +11,7 @@ import {
 } from 'components';
 import ProductOrderModal from '../modals/ProductOrderModal/ProductOrderModalContainer';
 import { useStyles } from './DeliveryOrder.styles';
-import ClientInvoiceCards from './ClientInvoiceCards';
+import DeliveryOrderCards from './DeliveryOrderCards';
 import Header from './Header';
 
 const DeliveryOrder = ({
@@ -24,7 +24,7 @@ const DeliveryOrder = ({
   total,
   taxBase,
   iva,
-  updateDataClientInvoice,
+  updateDataDeliveryOrder,
   createDeliveryOrder,
   nInvoice,
   getProducts,
@@ -81,13 +81,13 @@ const DeliveryOrder = ({
           showEditProductModal={showEditModal}
         />
 
-        <ClientInvoiceCards
+        <DeliveryOrderCards
           total={total}
           taxBase={taxBase}
           iva={iva}
           date={date}
           id={idDeliveryOrder}
-          updateDataClientInvoice={updateDataClientInvoice}
+          updateDataDeliveryOrder={updateDataDeliveryOrder}
           nInvoice={nInvoice}
         />
       </Container>
@@ -113,7 +113,7 @@ DeliveryOrder.propTypes = {
   client: PropTypes.string,
   resetClientInvoiceState: PropTypes.func.isRequired,
   date: PropTypes.number,
-  updateDataClientInvoice: PropTypes.func.isRequired,
+  updateDataDeliveryOrder: PropTypes.func.isRequired,
   createDeliveryOrder: PropTypes.func.isRequired,
   nInvoice: PropTypes.string,
   total: PropTypes.number.isRequired,

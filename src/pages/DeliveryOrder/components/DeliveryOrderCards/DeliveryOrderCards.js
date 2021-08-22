@@ -2,33 +2,33 @@
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-import { useStyles } from './ClientInvoiceCards.styles';
-import ClientInvoiceData from './components/ClientInvoiceData';
-import ClientInvoiceTotals from './components/ClientInvoiceTotals';
+import { useStyles } from './DeliveryOrderCards.styles';
+import DeliveryOrderData from './components/DeliveryOrderData';
+import DeliveryOrderTotals from './components/DeliveryOrderTotals';
 
-const ClientInvoiceCards = ({
+const DeliveryOrderCards = ({
   date,
   total,
   taxBase,
   iva,
   id,
   nInvoice,
-  updateDataClientInvoice,
+  updateDataDeliveryOrder,
 }) => {
   const classes = useStyles();
 
   return (
     <Grid container spacing={3} className={classes.cards}>
       <Grid item xs={12} md={5}>
-        <ClientInvoiceData
+        <DeliveryOrderData
           date={date}
           nInvoice={nInvoice}
-          updateData={updateDataClientInvoice}
+          updateData={updateDataDeliveryOrder}
           id={id}
         />
       </Grid>
       <Grid item xs={12} md={7}>
-        <ClientInvoiceTotals
+        <DeliveryOrderTotals
           total={total}
           taxBase={taxBase}
           iva={iva}
@@ -38,16 +38,16 @@ const ClientInvoiceCards = ({
   );
 };
 
-ClientInvoiceCards.propTypes = {
+DeliveryOrderCards.propTypes = {
   total: PropTypes.number.isRequired,
   taxBase: PropTypes.number.isRequired,
   iva: PropTypes.number.isRequired,
   date: PropTypes.number,
   nInvoice: PropTypes.string,
   id: PropTypes.string.isRequired,
-  updateDataClientInvoice: PropTypes.func.isRequired,
+  updateDataDeliveryOrder: PropTypes.func.isRequired,
 };
 
-ClientInvoiceCards.displayName = 'ClientInvoiceCards';
+DeliveryOrderCards.displayName = 'ClientInvoiceCards';
 
-export default ClientInvoiceCards;
+export default DeliveryOrderCards;

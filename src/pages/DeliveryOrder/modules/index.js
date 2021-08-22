@@ -31,7 +31,7 @@ const setDataTotals = (state, {
 }) => ({
   ...state,
   ...(date && { date }),
-  ...(totals && { totals }),
+  ...(totals),
 });
 
 const removeDeliveryOrder = (state, { payload: { id } }) => ({

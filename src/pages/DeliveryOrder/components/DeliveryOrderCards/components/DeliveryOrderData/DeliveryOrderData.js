@@ -6,15 +6,14 @@ import {
 
 import { DatePickerForm, ItemCard } from 'components';
 import { format } from 'utils';
-import { useStyles } from './ClientInvoiceData.styles';
+import { useStyles } from './DeliveryOrderData.styles';
 
-const ClientInvoiceData = ({
+const DeliveryOrderData = ({
   date,
   updateData,
   nInvoice,
   id,
 }) => {
-  // eslint-disable-next-line no-unused-vars
   const classes = useStyles();
 
   const _handleChangeDate = value => {
@@ -34,7 +33,7 @@ const ClientInvoiceData = ({
             onChange={_handleChangeDate}
           />
           <Grid item xs={12} md={6}>
-            <ItemCard label='Nº Factura' value={nInvoice} />
+            <ItemCard label='Nº Albarán' value={nInvoice} />
           </Grid>
         </Grid>
       </CardContent>
@@ -42,13 +41,13 @@ const ClientInvoiceData = ({
   );
 };
 
-ClientInvoiceData.propTypes = {
+DeliveryOrderData.propTypes = {
   date: PropTypes.number,
   nInvoice: PropTypes.string,
   updateData: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 };
 
-ClientInvoiceData.displayName = 'ClientInvoiceData';
-export const story = ClientInvoiceData;
-export default memo(ClientInvoiceData);
+DeliveryOrderData.displayName = 'ClientInvoiceData';
+export const story = DeliveryOrderData;
+export default memo(DeliveryOrderData);

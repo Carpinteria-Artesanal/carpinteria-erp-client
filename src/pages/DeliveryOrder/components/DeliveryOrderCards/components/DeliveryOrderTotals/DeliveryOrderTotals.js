@@ -16,7 +16,7 @@ import { ItemCard } from 'components';
 import { itemsCard } from './utils';
 import EditClientInvoiceTotalsModal from '../../../../modals/EditClientInvoiceTotalsModal';
 
-const ClientInvoiceTotals = props => {
+const DeliveryOrderTotals = props => {
   const [showModal, setShowModal] = useState(false);
 
   /**
@@ -65,12 +65,12 @@ const ClientInvoiceTotals = props => {
   );
 };
 
-ClientInvoiceTotals.propTypes = {
+DeliveryOrderTotals.propTypes = {
   total: PropTypes.number.isRequired,
   taxBase: PropTypes.number.isRequired,
   iva: PropTypes.number.isRequired,
 };
 
-ClientInvoiceTotals.displayName = 'ClientInvoiceTotals';
-export const story = ClientInvoiceTotals;
-export default memo(ClientInvoiceTotals);
+DeliveryOrderTotals.displayName = 'ClientInvoiceTotals';
+export const story = DeliveryOrderTotals;
+export default memo(DeliveryOrderTotals);

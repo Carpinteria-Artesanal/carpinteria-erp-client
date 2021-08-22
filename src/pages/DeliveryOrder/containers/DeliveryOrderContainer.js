@@ -6,7 +6,7 @@ import {
   deleteProduct,
   getDeliveryOrder,
   resetClientInvoiceState,
-  updateDataClientInvoice,
+  updateDataDeliveryOrder,
   updateDOClientInvoice,
 } from '../modules/actions';
 import { getProducts } from '../../Products/modules/actions';
@@ -16,7 +16,7 @@ const mapStateToProps = ({ deliveryOrder }) => deliveryOrder;
 const mapDispatchToProps = {
   getDeliveryOrder,
   resetClientInvoiceState,
-  updateDataClientInvoice,
+  updateDataDeliveryOrder,
   createDeliveryOrder,
   updateDOClientInvoice,
   deleteDOClientInvoice,

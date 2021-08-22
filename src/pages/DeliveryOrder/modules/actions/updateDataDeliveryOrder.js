@@ -6,18 +6,18 @@ import { UPDATE_DATA } from '../types';
  * @returns {{type: string}}
  * @private
  */
-const _updateDataClientInvoiceRequest = () => ({ type: UPDATE_DATA.REQUEST });
+const _updateDataDeliveryOrderRequest = () => ({ type: UPDATE_DATA.REQUEST });
 
 /**
  * Success action
  * @returns {{type: string}}
  * @private
  */
-const _updateDataClientInvoiceSuccess = () => ({
+const _updateDataDeliveryOrderSuccess = () => ({
   type: UPDATE_DATA.SUCCESS,
   payload: {
     level: 'success',
-    message: 'La factura se ha actualizado correctamente',
+    message: 'El albarán se ha actualizado correctamente',
   },
 });
 
@@ -28,7 +28,10 @@ const _updateDataClientInvoiceSuccess = () => ({
  * @return {{payload: Object, type: string}}
  * @private
  */
-const _updateDataClientInvoiceSet = ({ date, totals }) => ({
+const _updateDataDeliveryOrderSet = ({
+  date,
+  totals,
+}) => ({
   type: UPDATE_DATA.SET,
   payload: {
     ...(date && { date }),
@@ -39,10 +42,10 @@ const _updateDataClientInvoiceSet = ({ date, totals }) => ({
 /**
  * Error action
  * @param error
- * @returns {{type: string, error: _updateDataClientInvoiceError.props}}
+ * @returns {{type: string, error: _updateDataDeliveryOrderError.props}}
  * @private
  */
-const _updateDataClientInvoiceError = error => ({
+const _updateDataDeliveryOrderError = error => ({
   type: UPDATE_DATA.FAILURE,
   error,
 });
@@ -54,16 +57,16 @@ const _updateDataClientInvoiceError = error => ({
  * @param {function} callback
  * @returns {function(...[*]=)}
  */
-export const updateDataClientInvoice = (id, newData, callback) => async dispatch => {
-  dispatch(_updateDataClientInvoiceRequest());
+export const updateDataDeliveryOrder = (id, newData, callback) => async dispatch => {
+  dispatch(_updateDataDeliveryOrderRequest());
 
   try {
     const { data } = await axios.patch(`deliveryorders/${id}`, newData);
 
-    dispatch(_updateDataClientInvoiceSuccess());
-    dispatch(_updateDataClientInvoiceSet(data));
+    dispatch(_updateDataDeliveryOrderSuccess());
+    dispatch(_updateDataDeliveryOrderSet(data));
     callback?.();
   } catch (error) {
-    dispatch(_updateDataClientInvoiceError(error));
+    dispatch(_updateDataDeliveryOrderError(error));
   }
 };
