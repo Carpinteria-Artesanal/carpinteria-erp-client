@@ -39,7 +39,7 @@ const ClientDeliveryOrders = ({
           icon: EditIcon,
           tooltip: 'Editar',
           component: Link,
-          to: ({ _id }) => `${BASE_PATH}/albaranes/${_id}`,
+          to: ({ _id }) => `${BASE_PATH}/clientes/albaranes/${_id}`,
         },
       ]}
       count={count}

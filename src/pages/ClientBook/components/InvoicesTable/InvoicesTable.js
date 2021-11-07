@@ -39,7 +39,7 @@ const InvoicesTable = ({ invoices }) => {
           icon: VisibilityIcon,
           tooltip: 'Ver',
           component: Link,
-          to: ({ _id }) => `${BASE_PATH}/clientes/factura/${_id}`,
+          to: ({ _id }) => `${BASE_PATH}/clientes/facturas/${_id}`,
         },
       ]}
     />

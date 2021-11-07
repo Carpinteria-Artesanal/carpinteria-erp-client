@@ -20,6 +20,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
-
-// TODO: Activar mas adelante y configurar notificaciones de actualizaciones
-// serviceWorker.unregister();

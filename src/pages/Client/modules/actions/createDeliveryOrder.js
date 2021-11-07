@@ -40,7 +40,7 @@ export const createDeliveryOrder = id => async dispatch => {
     const { data } = await axios.post('deliveryorders', { client: id });
 
     dispatch(_createDeliveryOrderSuccess());
-    history.push(`/app/clientes/albaran/${data.id}`);
+    history.push(`/app/clientes/albaranes/${data.id}`);
   } catch (error) {
     dispatch(_createDeliveryOrderError(error));
   }

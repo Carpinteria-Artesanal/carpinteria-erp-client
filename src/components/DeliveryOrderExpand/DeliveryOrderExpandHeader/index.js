@@ -31,7 +31,7 @@ const DeliveryOrderExpandHeader = ({
             <Tooltip title='Ver'>
               <IconButton
                 component={RouterLink}
-                to={`/app/albaranes/${_id}`}
+                to={`/app/clientes/albaranes/${_id}`}
               >
                 <VisibilityIcon />
               </IconButton>

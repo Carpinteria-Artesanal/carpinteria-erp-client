@@ -40,7 +40,7 @@ export const createClientInvoice = id => async dispatch => {
     const { data } = await axios.post('client/invoices', { client: id });
 
     dispatch(_createClientInvoiceSuccess());
-    history.push(`/app/clientes/factura/${data.id}`);
+    history.push(`/app/clientes/facturas/${data.id}`);
   } catch (error) {
     dispatch(_createClientInvoiceError(error));
   }

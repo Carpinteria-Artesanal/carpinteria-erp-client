@@ -37,7 +37,7 @@ const PricesTable = ({ prices }) => {
           icon: VisibilityIcon,
           tooltip: 'Ver albarán',
           component: Link,
-          to: ({ deliveryOrder }) => `${BASE_PATH}/albaranes/${deliveryOrder}`,
+          to: ({ deliveryOrder }) => `${BASE_PATH}/clientes/albaranes/${deliveryOrder}`,
         },
       ]}
       data={prices}

@@ -15,3 +15,4 @@ export { default as TableMaterial } from './TableMaterial';
 export { default as TextEuro } from './TextEuro';
 export { default as PricesChart } from './PricesChart';
 export { default as SearchForm } from './SearchForm';
+export { default as ClientDocument } from '../pages/ClientDocument';
