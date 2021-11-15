@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ModalGrid, InputForm } from 'components';
 
 const EditTotalsModalView = ({
-  show, setShow, total, iva, re, rate, taxBase, update, id,
+  show, setShow, total, iva, re, rate, taxBase, update, id, type,
 }) => {
   const [state, setState] = useReducer(
     (oldState, newState) => ({ ...oldState, ...newState }),
@@ -45,9 +45,13 @@ const EditTotalsModalView = ({
   };
 
   const _handleSubmit = () => {
-    update(id, {
-      totals: state,
-    }, _close);
+    console.warn(id);
+    update({
+      id,
+      type,
+      newData: { totals: state },
+      callback: _close,
+    });
   };
 
   /**
@@ -108,6 +112,7 @@ EditTotalsModalView.propTypes = {
   taxBase: PropTypes.number,
   id: PropTypes.string.isRequired,
   update: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 EditTotalsModalView.displayName = 'EditInvoiceDataModalView';

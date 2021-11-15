@@ -36,7 +36,7 @@ const ClientBudgets = ({
           icon: EditIcon,
           tooltip: 'Editar',
           component: Link,
-          to: ({ _id }) => `${BASE_PATH}/clientes/factura/${_id}`,
+          to: ({ _id }) => `${BASE_PATH}/clientes/facturas/${_id}`,
         },
       ]}
       count={count}

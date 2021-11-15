@@ -52,11 +52,6 @@ const routesConfig = [
       },
       {
         exact: true,
-        path: '/app/proveedores',
-        component: lazy(() => import('pages/Providers/Providers')),
-      },
-      {
-        exact: true,
         path: '/app/proveedores/:idProvider',
         component: lazy(() => import('pages/Providers/Provider')),
       },
@@ -102,6 +97,11 @@ const routesConfig = [
             exact: true,
             path: '/app/clientes',
             component: () => <Redirect to='/app/clientes/listado' />,
+          },
+          {
+            exact: true,
+            path: '/app/clientes/:type/:id',
+            component: lazy(() => import('pages/ClientDocument')),
           },
           {
             exact: true,
