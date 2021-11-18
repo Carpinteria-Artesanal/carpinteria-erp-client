@@ -14,6 +14,7 @@ const HeaderProvider = ({
   createClientInvoice,
   currentTab,
   createDeliveryOrder,
+  createBudget,
 }) => {
   const _handleClickNewInvoice = () => {
     createClientInvoice(clientId);
@@ -24,7 +25,7 @@ const HeaderProvider = ({
   };
 
   const _handleClickNewBudget = () => {
-
+    createBudget(clientId);
   };
 
   const _buttons = useMemo(() => (
@@ -64,6 +65,7 @@ HeaderProvider.propTypes = {
   createDeliveryOrder: PropTypes.func.isRequired,
   clientId: PropTypes.string,
   currentTab: PropTypes.string.isRequired,
+  createBudget: PropTypes.func.isRequired,
 };
 
 HeaderProvider.displayName = 'Client-Header';
