@@ -4,15 +4,20 @@ import PropTypes from 'prop-types';
 import { ModalGrid, InputForm } from 'components';
 
 const EditTotalsModalView = ({
-  show, setShow, total, iva, re, rate, taxBase, update, id, type,
+  show,
+  setShow,
+  total,
+  iva,
+  taxBase,
+  update,
+  id,
+  type,
 }) => {
   const [state, setState] = useReducer(
     (oldState, newState) => ({ ...oldState, ...newState }),
     {
       total,
       iva,
-      ...(re !== undefined && { re }),
-      ...(rate !== undefined && { rate }),
       taxBase,
     },
   );
@@ -22,8 +27,6 @@ const EditTotalsModalView = ({
     {
       total: false,
       iva: false,
-      re: false,
-      rate: false,
       taxBase: false,
     },
   );
@@ -34,7 +37,12 @@ const EditTotalsModalView = ({
    * @param {String} value
    * @private
    */
-  const _handleChange = ({ target: { name, value } }) => {
+  const _handleChange = ({
+    target: {
+      name,
+      value,
+    },
+  }) => {
     const number = parseFloat(value);
     setState({ [name]: number });
     setErrors({ [name]: (typeof number !== 'number') });
@@ -95,8 +103,6 @@ const EditTotalsModalView = ({
     >
       {_renderInput('taxBase', 'Base imponible')}
       {_renderInput('iva', 'IVA')}
-      {re !== undefined && _renderInput('re', 'Recargo')}
-      {Boolean(rate) && _renderInput('rate', 'Tasa')}
       {_renderInput('total', 'Total')}
     </ModalGrid>
   );
@@ -107,14 +113,12 @@ EditTotalsModalView.propTypes = {
   setShow: PropTypes.func.isRequired,
   total: PropTypes.number,
   iva: PropTypes.number,
-  re: PropTypes.number,
-  rate: PropTypes.number,
   taxBase: PropTypes.number,
   id: PropTypes.string.isRequired,
   update: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
 };
 
-EditTotalsModalView.displayName = 'EditInvoiceDataModalView';
+EditTotalsModalView.displayName = 'EditTotalsModalView';
 export const story = EditTotalsModalView;
 export default memo(EditTotalsModalView);

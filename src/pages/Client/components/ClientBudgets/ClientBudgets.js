@@ -8,7 +8,10 @@ import { BASE_PATH } from 'constants/index';
 import { format } from 'utils';
 
 const ClientBudgets = ({
-  budgets, idClient, count, getClientBudgets,
+  budgets,
+  idClient,
+  count,
+  getBudgets,
 }) => {
   if (!idClient) return <LoadingScreen />;
 
@@ -36,12 +39,15 @@ const ClientBudgets = ({
           icon: EditIcon,
           tooltip: 'Editar',
           component: Link,
-          to: ({ _id }) => `${BASE_PATH}/clientes/facturas/${_id}`,
+          to: ({ _id }) => `${BASE_PATH}/clientes/presupuestos/${_id}`,
         },
       ]}
       count={count}
-      refresh={({ offset, limit }) => {
-        getClientBudgets(idClient, offset, limit);
+      refresh={({
+        offset,
+        limit,
+      }) => {
+        getBudgets(idClient, offset, limit);
       }}
     />
   );
@@ -51,7 +57,7 @@ ClientBudgets.propTypes = {
   budgets: PropTypes.array.isRequired,
   idClient: PropTypes.string,
   count: PropTypes.number.isRequired,
-  getClientBudgets: PropTypes.func.isRequired,
+  getBudgets: PropTypes.func.isRequired,
 };
 
 ClientBudgets.displayName = 'ProviderInvoices';

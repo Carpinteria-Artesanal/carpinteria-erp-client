@@ -1,6 +1,6 @@
 import { createReducer, setPayload } from 'store/utils';
 import {
-  EDIT_CLIENT, GET_CLIENT, GET_CLIENT_INVOICES, GET_DELIVERY_ORDERS,
+  EDIT_CLIENT, GET_BUDGETS, GET_CLIENT, GET_CLIENT_INVOICES, GET_DELIVERY_ORDERS,
 } from './types';
 
 const INITIAL_STATE = {
@@ -24,6 +24,7 @@ const _setClient = (state, {
     client,
     invoices,
     deliveryOrders,
+    budgets,
   },
 }) => ({
   ...state,
@@ -33,6 +34,10 @@ const _setClient = (state, {
     deliveryOrders: deliveryOrders.orders,
     count: deliveryOrders.count,
   },
+  budgets: {
+    budgets: budgets.orders,
+    count: budgets.count,
+  },
 });
 
 const ACTION_HANDLERS = {
@@ -40,6 +45,7 @@ const ACTION_HANDLERS = {
   [EDIT_CLIENT.SET]: setPayload,
   [GET_CLIENT_INVOICES.SET]: setPayload,
   [GET_DELIVERY_ORDERS.SET]: setPayload,
+  [GET_BUDGETS.SET]: setPayload,
 };
 
 export default createReducer(INITIAL_STATE, ACTION_HANDLERS);

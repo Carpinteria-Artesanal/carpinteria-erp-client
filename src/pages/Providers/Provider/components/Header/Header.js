@@ -37,7 +37,7 @@ const HeaderProvider = ({
     <>
       <Header
         routes={[{
-          link: '/app/gastos',
+          link: '/app/proveedores',
           title: 'Gastos',
         }]}
         title={title}

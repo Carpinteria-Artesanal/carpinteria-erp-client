@@ -32,6 +32,5 @@ export const getButtons = ({
     Icon: AddIcon,
     disableSvg: true,
     label: 'Nuevo presupuesto',
-    disabled: true,
   }],
 }[currentTab]);

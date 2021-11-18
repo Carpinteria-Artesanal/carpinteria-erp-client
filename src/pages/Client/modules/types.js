@@ -8,3 +8,6 @@ export const CREATE_CLIENT_INVOICES = requestActions('@client/CREATE_CLIENT_INVO
 
 export const CREATE_DELIVERY_ORDER = requestActions('@client/CREATE_DELIVERY_ORDER');
 export const GET_DELIVERY_ORDERS = requestActions('@client/GET_DELIVERY_ORDERS');
+
+export const CREATE_BUDGET = requestActions('@client/CREATE_BUDGET');
+export const GET_BUDGETS = requestActions('@client/GET_BUDGET');

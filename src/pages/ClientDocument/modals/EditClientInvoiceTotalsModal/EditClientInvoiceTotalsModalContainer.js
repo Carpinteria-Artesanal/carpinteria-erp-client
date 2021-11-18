@@ -1,11 +1,20 @@
 import { connect } from 'react-redux';
 
-import { updateDataClientDocument } from 'pages/ClientDocument/modules/actions';
 import { EditTotalsModal } from 'components';
+import { updateDataClientDocument } from '../../modules/actions';
 
-const mapStateToProps = ({ document: { totals, _id } }) => ({
-  ...totals,
+const mapStateToProps = ({
+  document: {
+    total,
+    iva,
+    taxBase,
+    _id,
+  },
+}) => ({
   id: _id,
+  total,
+  iva,
+  taxBase,
 });
 
 const mapDispatchToProps = {
