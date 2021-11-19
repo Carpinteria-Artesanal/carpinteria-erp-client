@@ -40,7 +40,11 @@ const _deleteClientDocumentError = error => ({
  * @param {string} type
  * @returns {function(...[*]=)}
  */
-export const deleteClientDocument = (type, id, callback) => async dispatch => {
+export const deleteClientDocument = ({
+  type,
+  id,
+  callback,
+}) => async dispatch => {
   dispatch(_deleteClientDocumentRequest());
 
   try {

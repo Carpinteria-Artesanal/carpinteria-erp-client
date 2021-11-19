@@ -79,8 +79,8 @@ const HeaderClientInvoice = ({
           label: 'Nuevo producto',
         }]}
       />
-      <ConfirmInvoiceModal show={showConfirmModal} setShow={setShowConfirmModal} />
-      <DeleteInvoiceModal show={showDeleteModal} setShow={setShowDeleteModal} />
+      <ConfirmInvoiceModal show={showConfirmModal} setShow={setShowConfirmModal} type={type} />
+      <DeleteInvoiceModal show={showDeleteModal} setShow={setShowDeleteModal} type={type} />
       <ProductOrderModal
         invoice={id}
         show={showAddProduct}

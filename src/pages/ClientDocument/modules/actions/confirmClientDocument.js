@@ -48,7 +48,11 @@ const _confirmClientDocumentError = error => ({
  * Confirma el documento
  * @returns {function(...[*]=)}
  */
-export const confirmClientDocument = (type, id) => async dispatch => {
+export const confirmClientDocument = ({
+  type,
+  id,
+  callback,
+}) => async dispatch => {
   dispatch(_confirmClientDocumentRequest());
 
   try {
@@ -56,6 +60,7 @@ export const confirmClientDocument = (type, id) => async dispatch => {
 
     dispatch(_confirmClientDocumentSuccess());
     dispatch(_confirmClientDocumentSet(data));
+    callback();
   } catch (error) {
     dispatch(_confirmClientDocumentError(error));
   }
