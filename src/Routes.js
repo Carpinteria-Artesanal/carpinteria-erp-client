@@ -105,6 +105,21 @@ const routesConfig = [
           },
           {
             exact: true,
+            path: '/app/clientes/libro/facturas/:year',
+            component: lazy(() => import('pages/ClientBook')),
+          },
+          {
+            exact: true,
+            path: '/app/clientes/libro/albaranes/:year',
+            component: lazy(() => import('pages/ClientBook')),
+          },
+          {
+            exact: true,
+            path: '/app/clientes/libro/presupuestos/:year',
+            component: lazy(() => import('pages/ClientBook')),
+          },
+          {
+            exact: true,
             path: '/app/clientes/:type/:id',
             component: lazy(() => import('pages/ClientDocument')),
           },
@@ -122,11 +137,6 @@ const routesConfig = [
             exact: true,
             path: '/app/clientes/factura/:idInvoice',
             component: lazy(() => import('pages/ClientInvoice')),
-          },
-          {
-            exact: true,
-            path: '/app/clientes/libro/:year',
-            component: lazy(() => import('pages/ClientBook')),
           },
           {
             exact: true,
