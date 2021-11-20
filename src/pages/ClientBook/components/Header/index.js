@@ -6,10 +6,10 @@ import { NavLink } from 'react-router-dom';
 
 import { Header } from 'components';
 
-const HeaderBook = ({ year }) => (
+const HeaderBook = ({ year, type }) => (
   <Header
-    title='Libro'
-    description={`Libro clientes ${year}`}
+    title={`Libro ${type}`}
+    description={`Libro ${type} ${year}`}
     routes={[{
       link: '/app/clientes/listado',
       title: 'Clientes',
@@ -17,14 +17,14 @@ const HeaderBook = ({ year }) => (
     buttons={[
       {
         component: NavLink,
-        to: `/app/clientes/libro/${year - 1}`,
+        to: `/app/clientes/libro/${type}/${year - 1}`,
         Icon: SkipPreviousIcon,
         label: `${year - 1}`,
         variant: 'outlined',
       },
       {
         component: NavLink,
-        to: `/app/clientes/libro/${year + 1}`,
+        to: `/app/clientes/libro/${type}/${year + 1}`,
         Icon: SkipNextIcon,
         label: `${year + 1}`,
         variant: 'outlined',
@@ -35,6 +35,7 @@ const HeaderBook = ({ year }) => (
 
 HeaderBook.propTypes = {
   year: PropTypes.number.isRequired,
+  type: PropTypes.number.isRequired,
 };
 
 HeaderBook.displayName = 'HeaderBook';

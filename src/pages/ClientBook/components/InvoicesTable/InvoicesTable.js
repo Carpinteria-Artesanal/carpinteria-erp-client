@@ -16,7 +16,7 @@ const InvoicesTable = ({ invoices }) => {
       className={classes.table}
       columns={[
         {
-          title: 'Nº de Factura',
+          title: 'Nº',
           field: 'nInvoice',
         },
         {

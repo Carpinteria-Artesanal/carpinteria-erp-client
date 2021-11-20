@@ -105,17 +105,7 @@ const routesConfig = [
           },
           {
             exact: true,
-            path: '/app/clientes/libro/facturas/:year',
-            component: lazy(() => import('pages/ClientBook')),
-          },
-          {
-            exact: true,
-            path: '/app/clientes/libro/albaranes/:year',
-            component: lazy(() => import('pages/ClientBook')),
-          },
-          {
-            exact: true,
-            path: '/app/clientes/libro/presupuestos/:year',
+            path: '/app/clientes/libro/:type/:year',
             component: lazy(() => import('pages/ClientBook')),
           },
           {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GET_CLIENT_INVOICES } from '../types';
+import { TYPES } from '../../../ClientDocument/constants';
 
 /**
  * Request action
@@ -38,12 +39,13 @@ const _getClientInvoicesError = error => ({
 /**
  * Trae las facturas del cliente
  * @param {String} year
+ * @param {String} type
  * @returns {function(...[*]=)}
  */
-export const getClientInvoices = year => async dispatch => {
+export const getClientInvoices = (type, year) => async dispatch => {
   dispatch(_getClientInvoicesRequest());
   try {
-    const { data } = await axios(`client/invoices?year=${year}`);
+    const { data } = await axios(`${TYPES[type]}/?year=${year}`);
 
     dispatch(_getClientInvoicesSuccess());
     dispatch(_getClientInvoicesSet(data));
