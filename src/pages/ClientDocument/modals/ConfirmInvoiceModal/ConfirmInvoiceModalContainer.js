@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import ConfirmInvoiceModal from './ConfirmInvoiceModal';
 import { confirmClientDocument } from '../../modules/actions';
 
-const mapStateToProps = ({ clientInvoice: { _id } }) => ({
+const mapStateToProps = ({ document: { _id } }) => ({
   id: _id,
 });
 
 const mapDispatchToProps = {
-  confirmInvoice: confirmClientDocument,
+  confirmClientDocument,
 };
 
 export default connect(

@@ -91,17 +91,17 @@ const routesConfig = [
         component: lazy(() => import('pages/Providers/Provider')),
       },
       {
-        exact: true,
-        path: '/app/intercambio',
-        component: lazy(() => import('pages/SwapInvoices')),
-      },
-      {
         path: '/app/clientes',
         routes: [
           {
             exact: true,
             path: '/app/clientes',
             component: () => <Redirect to='/app/clientes/listado' />,
+          },
+          {
+            exact: true,
+            path: '/app/clientes/libro/:type/:year',
+            component: lazy(() => import('pages/ClientBook')),
           },
           {
             exact: true,
@@ -120,13 +120,13 @@ const routesConfig = [
           },
           {
             exact: true,
-            path: '/app/clientes/factura/:idInvoice',
-            component: lazy(() => import('pages/ClientInvoice')),
+            path: '/app/clientes/pagos',
+            component: lazy(() => import('pages/ClientPayments')),
           },
           {
             exact: true,
-            path: '/app/clientes/libro/:year',
-            component: lazy(() => import('pages/ClientBook')),
+            path: '/app/clientes/factura/:idInvoice',
+            component: lazy(() => import('pages/ClientInvoice')),
           },
           {
             exact: true,

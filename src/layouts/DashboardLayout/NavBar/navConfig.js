@@ -1,9 +1,7 @@
 import { PieChart as PieChartIcon, ShoppingCart, Users as UsersIcon } from 'react-feather';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import EuroIcon from '@material-ui/icons/Euro';
-// import PostAddIcon from '@material-ui/icons/PostAdd';
 import DescriptionIcon from '@material-ui/icons/Description';
-import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 
 const year = new Date().getFullYear();
 
@@ -32,9 +30,28 @@ export const navConfig = [
         href: '/app/clientes/listado',
       },
       {
-        title: 'Libro',
+        title: 'Pagos',
+        icon: EuroIcon,
+        href: '/app/clientes/pagos',
+      },
+      {
+        title: 'Libros',
         icon: MenuBookIcon,
-        href: `/app/clientes/libro/${year}`,
+        href: '/app/clientes/libro',
+        items: [
+          {
+            title: 'Facturas',
+            href: `/app/clientes/libro/facturas/${year}`,
+          },
+          {
+            title: 'Albaranes',
+            href: `/app/clientes/libro/albaranes/${year}`,
+          },
+          {
+            title: 'Presupuestos',
+            href: `/app/clientes/libro/presupuestos/${year}`,
+          },
+        ],
       },
       {
         title: 'Productos',
@@ -60,21 +77,6 @@ export const navConfig = [
         title: 'Pagos',
         icon: EuroIcon,
         href: '/app/pagos',
-      },
-      /* {
-        title: 'Notas',
-        icon: PostAddIcon,
-        href: '/app/notas',
-      }, */
-    ],
-  },
-  {
-    subheader: 'Operaciones',
-    items: [
-      {
-        title: 'Intercambio',
-        icon: SwapHorizIcon,
-        href: '/app/intercambio',
       },
     ],
   },

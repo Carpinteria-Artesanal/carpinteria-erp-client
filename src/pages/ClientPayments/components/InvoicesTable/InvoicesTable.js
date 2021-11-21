@@ -32,6 +32,11 @@ const InvoicesTable = ({ invoices }) => {
           // eslint-disable-next-line react/prop-types
           render: ({ total }) => <TextEuro num={total} />,
         },
+        {
+          title: 'Pendiente',
+          // eslint-disable-next-line react/prop-types
+          render: ({ remaining }) => <TextEuro num={remaining} red />,
+        },
       ]}
       data={invoices}
       actions={[

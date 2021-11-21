@@ -5,10 +5,10 @@ import clsx from 'clsx';
 import { useStyles } from './styles';
 
 const TextEuro = ({
-  num, Component, className, decimals, ...rest
+  num, Component, className, decimals, red, ...rest
 }) => {
   const classes = useStyles();
-  const getColorAmount = (num < 0 ? classes.red : '');
+  const getColorAmount = (num < 0 || red ? classes.red : '');
 
   return (
     <Component
@@ -25,6 +25,7 @@ TextEuro.propTypes = {
   Component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   className: PropTypes.string,
   decimals: PropTypes.number,
+  red: PropTypes.bool,
 };
 
 TextEuro.defaultProps = {

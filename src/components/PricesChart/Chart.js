@@ -9,12 +9,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Chart({
+const Chart = ({
   className,
   data: dataProp,
   labels,
   ...rest
-}) {
+}) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -125,7 +125,7 @@ function Chart({
       />
     </div>
   );
-}
+};
 
 Chart.propTypes = {
   className: PropTypes.string,

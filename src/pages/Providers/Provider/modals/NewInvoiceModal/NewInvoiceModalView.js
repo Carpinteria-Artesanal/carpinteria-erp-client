@@ -162,6 +162,7 @@ const NewInvoiceModal = ({
     />
   );
 
+  // eslint-disable-next-line react/no-unstable-nested-components
   const _renderAutocomplete = () => (
     <AutocompleteForm
       disableClearable

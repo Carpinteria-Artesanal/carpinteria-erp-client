@@ -8,22 +8,33 @@ import { Page } from 'components';
 import Header from './Header';
 import { useStyles } from './ClientBook.styles';
 import InvoicesTable from './InvoicesTable';
+import SearchForm from '../../Book/components/SearchForm/SearchForm';
 
 const ClientBook = ({
   invoices,
   getClientInvoices,
 }) => {
   const classes = useStyles();
-  const { year } = useParams();
+  const {
+    type,
+    year,
+  } = useParams();
 
   useEffect(() => {
-    getClientInvoices(year);
-  }, [year]);
+    getClientInvoices(type, year);
+  }, [type, year]);
 
   return (
     <Page className={classes.root} title='Libro'>
       <Container maxWidth={false}>
-        <Header year={Number(year)} />
+        <Header year={Number(year)} type={type} />
+        <SearchForm
+          getInvoices={() => {
+          }}
+          year={year}
+          state={{}}
+          setState={() => alert('Todavia no funciona')}
+        />
         <InvoicesTable invoices={invoices} />
       </Container>
     </Page>

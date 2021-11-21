@@ -52,7 +52,7 @@ const ProductsInvoice = ({
         },
         {
           title: 'Total',
-          render: ({ total }) => <TextEuro num={total} />,
+          render: ({ taxBase }) => <TextEuro num={taxBase} />,
         },
       ]}
       data={products}

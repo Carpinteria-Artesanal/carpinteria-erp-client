@@ -7,6 +7,7 @@ import book from 'pages/Book/modules';
 import client from 'pages/Client/modules';
 import clientBook from 'pages/ClientBook/modules';
 import clientInvoice from 'pages/ClientInvoice/modules';
+import clientPayments from 'pages/ClientPayments/modules';
 import document from 'pages/ClientDocument/modules';
 import clients from 'pages/Clients/modules';
 import dashboard from 'pages/Dashboard/modules';
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   client,
   clientBook,
   clientInvoice,
+  clientPayments,
   clients,
   dashboard,
   document,

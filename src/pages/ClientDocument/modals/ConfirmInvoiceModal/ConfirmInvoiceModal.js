@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { ConfirmModal } from 'components/Modals';
 
 const ConfirmInvoiceModal = ({
-  confirmInvoice,
+  confirmClientDocument,
   id,
   setShow,
+  type,
   ...rest
 }) => {
   const _close = useCallback(() => {
@@ -13,7 +14,11 @@ const ConfirmInvoiceModal = ({
   }, [setShow]);
 
   const _handleSend = () => {
-    confirmInvoice(id, _close);
+    confirmClientDocument({
+      id,
+      callback: _close,
+      type,
+    });
     _close();
   };
 
@@ -43,7 +48,8 @@ const ConfirmInvoiceModal = ({
 ConfirmInvoiceModal.propTypes = {
   setShow: PropTypes.func,
   id: PropTypes.string.isRequired,
-  confirmInvoice: PropTypes.func.isRequired,
+  confirmClientDocument: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 ConfirmInvoiceModal.displayName = 'ConfirmInvoiceModal';

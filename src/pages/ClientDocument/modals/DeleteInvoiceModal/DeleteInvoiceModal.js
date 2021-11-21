@@ -4,10 +4,11 @@ import { ConfirmModal } from 'components';
 import { useHistory } from 'react-router';
 
 const DeleteInvoiceModal = ({
-  deleteClientInvoice,
+  deleteClientDocument,
   id,
   setShow,
   client,
+  type,
   ...rest
 }) => {
   const history = useHistory();
@@ -16,8 +17,12 @@ const DeleteInvoiceModal = ({
   }, [setShow]);
 
   const _handleSend = () => {
-    deleteClientInvoice(id, () => {
-      history.replace(`/app/clientes/${client}`);
+    deleteClientDocument({
+      id,
+      callback: () => {
+        history.replace(`/app/clientes/${client}`);
+      },
+      type,
     });
     _close();
   };
@@ -49,9 +54,10 @@ const DeleteInvoiceModal = ({
 DeleteInvoiceModal.propTypes = {
   setShow: PropTypes.func,
   id: PropTypes.string,
-  deleteClientInvoice: PropTypes.func.isRequired,
+  deleteClientDocument: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
   client: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 DeleteInvoiceModal.displayName = 'DeleteProductModal';

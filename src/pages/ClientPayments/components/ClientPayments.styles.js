@@ -7,11 +7,7 @@ export const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
   },
-  card: {
+  cards: {
     marginTop: theme.spacing(2),
-  },
-  button: {
-    marginTop: theme.spacing(1.5),
-    maxHeight: theme.spacing(5),
   },
 }));
