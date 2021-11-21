@@ -91,11 +91,6 @@ const routesConfig = [
         component: lazy(() => import('pages/Providers/Provider')),
       },
       {
-        exact: true,
-        path: '/app/intercambio',
-        component: lazy(() => import('pages/SwapInvoices')),
-      },
-      {
         path: '/app/clientes',
         routes: [
           {
