@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable */
 import { memo, useEffect } from 'react';
 import { Container } from '@material-ui/core';
 import PropTypes from 'prop-types';
