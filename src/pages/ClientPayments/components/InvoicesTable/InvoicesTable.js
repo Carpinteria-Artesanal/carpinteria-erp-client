@@ -11,9 +11,6 @@ import { useStyles } from './InvoicesTable.styles';
 const InvoicesTable = ({ invoices }) => {
   const classes = useStyles();
 
-  // eslint-disable-next-line no-console
-  console.log(invoices);
-
   return (
     <TableMaterial
       className={classes.table}
