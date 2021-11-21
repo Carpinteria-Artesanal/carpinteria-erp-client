@@ -30,6 +30,11 @@ export const navConfig = [
         href: '/app/clientes/listado',
       },
       {
+        title: 'Pagos',
+        icon: EuroIcon,
+        href: '/app/clientes/pagos',
+      },
+      {
         title: 'Libros',
         icon: MenuBookIcon,
         href: '/app/clientes/libro',
