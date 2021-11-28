@@ -58,7 +58,7 @@ export const addClientPayment = ({
   dispatch(_addClientPaymentRequest());
 
   try {
-    const response = await axios.patch(`client/invoices/${id}/payments`, data);
+    const response = await axios.post(`client/invoices/${id}/payments`, data);
 
     dispatch(_addClientPaymentSuccess());
     dispatch(_addClientPaymentSet(response));

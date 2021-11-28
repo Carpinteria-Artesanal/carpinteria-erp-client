@@ -4,24 +4,40 @@ import { ModalGrid } from 'components/Modals';
 import { DatePickerForm, InputForm, SelectForm } from 'components/Forms';
 import { TYPE_PAYMENT } from 'constants/invoices';
 import { format } from 'utils';
+import { useDispatch } from 'react-redux';
+import { addNotification } from '../../../../reducers/notifications';
 
 const ConfirmPaymentModal = ({
-  confirmPayment,
+  addClientPayment,
   close,
+  payment,
   ...rest
 }) => {
   const [paymentDate, setPaymentDate] = useState(null);
   const [type, setType] = useState('?');
-  const [numCheque, setNumCheque] = useState(null);
   const [amount, setAmount] = useState(null);
+  const dispatch = useDispatch();
 
   const _handleSend = () => {
-    confirmPayment({
-      paymentDate: format.dateToSend(paymentDate),
-      type,
-      ...(numCheque && { numCheque }),
-      amount,
-    }, close);
+    try {
+      const data = {
+        date: format.dateToSend(paymentDate),
+        paymentType: type,
+        amount: Number(amount),
+      };
+      addClientPayment({
+        id: payment._id,
+        data,
+        callback: close,
+      });
+    } catch (e) {
+      console.error(e);
+      dispatch(addNotification({
+        level: 'error',
+        message: 'El importe no es correcto',
+        dismissible: true,
+      }));
+    }
   };
 
   /**
@@ -47,15 +63,6 @@ const ConfirmPaymentModal = ({
    * @param {String} value
    * @private
    */
-  const _handleCheque = ({ target: { value } }) => {
-    setNumCheque(value);
-  };
-
-  /**
-   * Handle change number of cheque
-   * @param {String} value
-   * @private
-   */
   const _handleAmount = ({ target: { value } }) => {
     setAmount(value);
   };
@@ -69,42 +76,24 @@ const ConfirmPaymentModal = ({
     if (key === 'Enter') _handleSend();
   };
 
-  /**
-   * Render input of number cheque
-   * @returns {InputForm|null}
-   * @private
-   */
-  const _renderNumberCheque = () => (
-    type === 'Talón'
-      ? (
-        <InputForm
-          label='Número de talón'
-          value={numCheque}
-          onChange={_handleCheque}
-          onKeyPress={_handleKeyPress}
-          size={4}
-        />
-      )
-      : null
-  );
-
   return (
     <ModalGrid
       {...rest}
-      title='Confirmación de factura'
+      title='Añadir pago'
       action={_handleSend}
       close={close}
+      show={!!payment}
     >
       <DatePickerForm
         clearable
         size={4}
-        label='Fecha de cobro'
+        label='Fecha de pago'
         value={paymentDate}
         onAccept={_handleChangePicker}
       />
 
       <SelectForm
-        label='Tipo de cobro'
+        label='Forma de pago'
         value={type}
         onChange={_handleSelect}
         size={4}
@@ -119,13 +108,13 @@ const ConfirmPaymentModal = ({
           </option>
         ))}
       </SelectForm>
-      {_renderNumberCheque()}
       <InputForm
         label='Importe'
-        value={numCheque}
+        value={amount}
         onChange={_handleAmount}
         onKeyPress={_handleKeyPress}
         size={4}
+        type='number'
       />
     </ModalGrid>
   );
@@ -133,8 +122,8 @@ const ConfirmPaymentModal = ({
 
 ConfirmPaymentModal.propTypes = {
   close: PropTypes.func.isRequired,
-  confirmPayment: PropTypes.func.isRequired,
-  show: PropTypes.bool.isRequired,
+  addClientPayment: PropTypes.func.isRequired,
+  payment: PropTypes.object,
 };
 
 ConfirmPaymentModal.displayName = 'ConfirmPaymentModal';

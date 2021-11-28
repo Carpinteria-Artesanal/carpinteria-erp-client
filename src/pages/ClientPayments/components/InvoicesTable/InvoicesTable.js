@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -8,8 +8,7 @@ import { BASE_PATH } from 'constants/index';
 import { format } from 'utils';
 import EuroIcon from '@material-ui/icons/Euro';
 import { useStyles } from './InvoicesTable.styles';
-import ConfirmPaymentModal
-  from '../../../Payments/modals/ConfirmPaymentModal/ConfirmPaymentModalContainer';
+import ConfirmPaymentModal from '../../modals/ConfirmPaymentModal';
 
 const InvoicesTable = ({ invoices }) => {
   const classes = useStyles();
@@ -18,6 +17,13 @@ const InvoicesTable = ({ invoices }) => {
   const _handlePaymentButton = row => {
     setPayment(row);
   };
+
+  const _closeModal = useCallback(
+    () => {
+      setPayment(null);
+    },
+    [],
+  );
 
   return (
     <>
@@ -62,7 +68,7 @@ const InvoicesTable = ({ invoices }) => {
           },
         ]}
       />
-      <ConfirmPaymentModal payment={payment} setShow={setPayment} />
+      <ConfirmPaymentModal payment={payment} close={_closeModal} />
     </>
   );
 };
