@@ -125,11 +125,6 @@ const routesConfig = [
           },
           {
             exact: true,
-            path: '/app/clientes/factura/:idInvoice',
-            component: lazy(() => import('pages/ClientInvoice')),
-          },
-          {
-            exact: true,
             path: '/app/clientes/:id',
             component: lazy(() => import('pages/Client')),
           },

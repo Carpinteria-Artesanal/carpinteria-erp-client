@@ -3,6 +3,7 @@ import { ADD_CLIENT_PAYMENT, GET_CLIENT_PAYMENTS } from './types';
 
 const INITIAL_STATE = {
   invoices: [],
+  count: 0,
 };
 
 const ACTION_HANDLERS = {

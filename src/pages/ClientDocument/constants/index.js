@@ -1,3 +1,4 @@
+export const INVOICE_TYPE = 'facturas';
 export const TYPES = {
   albaranes: 'deliveryorders',
   facturas: 'client/invoices',
