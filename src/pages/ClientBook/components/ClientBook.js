@@ -33,7 +33,7 @@ const ClientBook = ({
           }}
           year={year}
           state={{}}
-          setState={() => alert('Todavia no funciona')}
+          setState={() => {}}
         />
         <InvoicesTable invoices={invoices} />
       </Container>
