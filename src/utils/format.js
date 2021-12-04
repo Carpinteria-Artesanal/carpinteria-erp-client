@@ -38,6 +38,7 @@ const dateToSend = cell => {
  * @return {string}
  */
 const euro = (cell, options = {}) => {
+  if (cell === undefined) return '-- €';
   const n = new Intl.NumberFormat('es-ES', {
     style: 'currency',
     currency: 'EUR',

@@ -8,7 +8,7 @@ import { BASE_PATH } from 'constants/index';
 import { format } from 'utils';
 import { useStyles } from './InvoicesTable.styles';
 
-const InvoicesTable = ({ invoices }) => {
+const InvoicesTable = ({ invoices, getInvoices }) => {
   const classes = useStyles();
 
   return (
@@ -20,12 +20,12 @@ const InvoicesTable = ({ invoices }) => {
           field: 'nInvoice',
         },
         {
-          title: 'Fecha',
-          render: ({ date }) => format.date(date),
-        },
-        {
           title: 'Cliente',
           field: 'nameClient',
+        },
+        {
+          title: 'Fecha',
+          render: ({ date }) => format.date(date),
         },
         {
           title: 'Importe',
@@ -42,12 +42,14 @@ const InvoicesTable = ({ invoices }) => {
           to: ({ _id }) => `${BASE_PATH}/clientes/facturas/${_id}`,
         },
       ]}
+      refresh={getInvoices}
     />
   );
 };
 
 InvoicesTable.propTypes = {
   invoices: PropTypes.array.isRequired,
+  getInvoices: PropTypes.func.isRequired,
 };
 
 InvoicesTable.displayName = 'BillingTable';

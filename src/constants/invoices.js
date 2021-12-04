@@ -62,3 +62,5 @@ export const COLUMNS_INVOICES = {
   SEGUROS: 'SEGUROS',
   OTROS: 'OTROS',
 };
+
+export const INVOICE_TYPE = 'facturas';

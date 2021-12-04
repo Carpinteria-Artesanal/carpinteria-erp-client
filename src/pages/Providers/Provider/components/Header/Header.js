@@ -2,9 +2,9 @@ import { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 
 import { Label, Header } from 'components';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import { useStyles } from './styles';
 import NewInvoiceModal from '../../modals/NewInvoiceModal';
 
@@ -38,7 +38,7 @@ const HeaderProvider = ({
       <Header
         routes={[{
           link: '/app/proveedores',
-          title: 'Gastos',
+          title: 'Proveedores',
         }]}
         title={title}
         description={(

@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-import { memo, useEffect } from 'react';
+import {
+  useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import {
   Card,
@@ -12,22 +14,26 @@ import {
 import {
   DatePickerForm,
   InputForm,
-} from 'components';
+} from 'components/index';
+import { useDebounce } from 'hooks';
 
-import { useStyles } from './SearchForm.styles';
-import { fields } from '../../constans';
+import { useStyles } from './SearchWhitoutState.styles';
 
-const SearchForm = ({
-  getInvoices,
-  year,
+const SearchWithoutState = ({
+  get,
+  fields,
+  dates,
   state,
   setState,
 }) => {
   const classes = useStyles();
+  const debounce = useDebounce();
 
   useEffect(() => {
-    getInvoices();
-  }, [state.expenses, state.dateInvoice, year]);
+    debounce(() => {
+      get();
+    }, 300);
+  }, [state]);
 
   /**
    * Handle event onChange input
@@ -51,16 +57,16 @@ const SearchForm = ({
    * @private
    */
   const _handleKeyPress = ({ key }) => {
-    if (key === 'Enter') getInvoices();
+    if (key === 'Enter') get();
   };
 
   /**
    * Handle change picker
-   * @param {String} date
+   * @param {String} field
    * @private
    */
-  const _handleChangePicker = date => {
-    setState({ dateInvoice: date });
+  const _handleChangePicker = field => date => {
+    setState({ [field]: date });
   };
 
   /**
@@ -83,7 +89,23 @@ const SearchForm = ({
       name={id}
       label={label}
       onKeyPress={_handleKeyPress}
-      size={3}
+      size={2}
+      {...options}
+    />
+  );
+
+  const _renderDate = ({
+    id,
+    label,
+    options = {},
+  }) => (
+    <DatePickerForm
+      key={id}
+      clearable
+      size={2}
+      label={label}
+      onAccept={_handleChangePicker(id)}
+      value={state[id]}
       {...options}
     />
   );
@@ -96,13 +118,7 @@ const SearchForm = ({
       <Divider />
       <CardContent>
         <Grid spacing={3} container>
-          <DatePickerForm
-            clearable
-            size={3}
-            label='Fecha factura'
-            value={state.dateInvoice}
-            onAccept={_handleChangePicker}
-          />
+          {dates?.map(_renderDate)}
           {fields.map(_renderInput)}
         </Grid>
       </CardContent>
@@ -110,13 +126,13 @@ const SearchForm = ({
   );
 };
 
-SearchForm.propTypes = {
-  getInvoices: PropTypes.func.isRequired,
-  year: PropTypes.string.isRequired,
+SearchWithoutState.propTypes = {
+  get: PropTypes.func.isRequired,
   state: PropTypes.object.isRequired,
+  fields: PropTypes.array.isRequired,
   setState: PropTypes.func.isRequired,
 };
 
-SearchForm.displayName = 'SearchForm';
+SearchWithoutState.displayName = 'SearchWithoutState';
 
-export default memo(SearchForm);
+export default SearchWithoutState;

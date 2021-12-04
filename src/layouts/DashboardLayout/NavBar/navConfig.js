@@ -7,17 +7,11 @@ const year = new Date().getFullYear();
 
 export const navConfig = [
   {
-    subheader: 'Informes',
     items: [
       {
         title: 'Inicio',
         icon: PieChartIcon,
         href: '/app/informes/inicio',
-      },
-      {
-        title: 'Facturación',
-        icon: DescriptionIcon,
-        href: `/app/informes/facturacion/${year}`,
       },
     ],
   },
@@ -69,14 +63,19 @@ export const navConfig = [
         href: '/app/proveedores',
       },
       {
+        title: 'Pagos',
+        icon: EuroIcon,
+        href: '/app/pagos',
+      },
+      {
         title: 'Libro',
         icon: MenuBookIcon,
         href: `/app/libro/${year}`,
       },
       {
-        title: 'Pagos',
-        icon: EuroIcon,
-        href: '/app/pagos',
+        title: 'Facturación',
+        icon: DescriptionIcon,
+        href: `/app/informes/facturacion/${year}`,
       },
     ],
   },
