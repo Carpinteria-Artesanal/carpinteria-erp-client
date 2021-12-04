@@ -9,10 +9,13 @@ import { useParams } from 'react-router';
 import {
   LoadingScreen, Page, DeleteProductInvoiceModal, ProductsInvoice,
 } from 'components';
+import { Alert } from '@material-ui/lab';
 import ProductOrderModal from '../modals/ProductOrderModal/ProductOrderModalContainer';
 import { useStyles } from './ClientDocument.styles';
 import ClientInvoiceCards from './ClientInvoiceCards';
 import Header from './Header';
+import ClientInvoicePayments from './ClientInvoicePayments';
+import { INVOICE_TYPE } from '../constants';
 
 const ClientDocument = ({
   getClientDocument,
@@ -30,6 +33,9 @@ const ClientDocument = ({
   getProducts,
   products,
   deleteProduct,
+  payments,
+  remaining,
+  paid,
 }) => {
   const {
     id,
@@ -79,6 +85,15 @@ const ClientDocument = ({
           type={type}
         />
 
+        {type === INVOICE_TYPE
+          && (
+            <Alert severity={paid ? 'success' : 'error'} className={classes.alert} variant='filled'>
+              {!paid && 'NO '}
+              PAGADO
+              {remaining > 0 && ` / Pendiente: ${remaining} €`}
+            </Alert>
+          )}
+
         <ProductsInvoice
           products={products}
           showDeleteProductModal={showModalDelete}
@@ -96,6 +111,8 @@ const ClientDocument = ({
           nInvoice={nInvoice}
           type={type}
         />
+
+        {payments && <ClientInvoicePayments payments={payments} />}
       </Container>
       <DeleteProductInvoiceModal
         close={_closeDeleteModal}
@@ -129,6 +146,9 @@ ClientDocument.propTypes = {
   getProducts: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
   deleteProduct: PropTypes.func.isRequired,
+  payments: PropTypes.array,
+  remaining: PropTypes.number,
+  paid: PropTypes.bool,
 };
 
 ClientDocument.displayName = 'ClientDocument';
