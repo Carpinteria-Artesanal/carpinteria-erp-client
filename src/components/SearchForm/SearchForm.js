@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 
 import {
+  DatePickerForm,
   InputForm,
 } from 'components/index';
 import { useDebounce } from 'hooks';
@@ -22,6 +23,7 @@ const SearchForm = ({
   get,
   initialState,
   fields,
+  dates,
 }) => {
   const [state, setState] = useReducer(
     (oldstate, newState) => ({ ...oldstate, ...newState }),
@@ -66,6 +68,15 @@ const SearchForm = ({
   };
 
   /**
+   * Handle change picker
+   * @param {String} field
+   * @private
+   */
+  const _handleChangePicker = field => date => {
+    setState({ [field]: date });
+  };
+
+  /**
    * Render a input element
    * @param {string} name
    * @param {String} label
@@ -90,6 +101,22 @@ const SearchForm = ({
     />
   );
 
+  const _renderDate = ({
+    id,
+    label,
+    options = {},
+  }) => (
+    <DatePickerForm
+      key={id}
+      clearable
+      size={2}
+      label={label}
+      onAccept={_handleChangePicker(id)}
+      value={state[id]}
+      {...options}
+    />
+  );
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -98,6 +125,7 @@ const SearchForm = ({
       <Divider />
       <CardContent>
         <Grid spacing={3} container>
+          {dates?.map(_renderDate)}
           {fields.map(_renderInput)}
         </Grid>
       </CardContent>
