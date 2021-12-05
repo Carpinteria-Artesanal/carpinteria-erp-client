@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { memo, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
@@ -15,8 +16,15 @@ const INITIAL_STATE = {
   total: '',
   concept: INVOICES_CONCEPTS[0],
   type: TYPE_PAYMENT[0],
-  paymentDate: null,
   bookColumn: '',
+  paymentDate0: null,
+  paymentDate1: null,
+  paymentDate2: null,
+  paymentDate3: null,
+  amount0: null,
+  amount1: null,
+  amount2: null,
+  amount3: null,
 };
 
 const NewInvoiceModal = ({
@@ -41,24 +49,36 @@ const NewInvoiceModal = ({
       dateInvoice,
       dateRegister,
       total,
-      re,
       concept,
-      paymentDate,
+      paymentDate0,
+      paymentDate1,
+      paymentDate2,
+      paymentDate3,
       type,
       bookColumn,
+      amount0,
+      amount1,
+      amount2,
+      amount3,
     } = state;
+
+    const payments = [
+      { paymentDate: format.dateToSend(paymentDate0), amount: amount0 },
+      { paymentDate: format.dateToSend(paymentDate1), amount: amount1 },
+      { paymentDate: format.dateToSend(paymentDate2), amount: amount2 },
+      { paymentDate: format.dateToSend(paymentDate3), amount: amount3 },
+    ].filter(payment => payment.amount);
 
     createInvoiceExpense({
       nInvoice,
       dateInvoice: format.dateToSend(dateInvoice),
       dateRegister: format.dateToSend(dateRegister),
       total: Number(total),
-      re: Number(re),
       provider: idProvider,
       concept,
-      ...(paymentDate && { paymentDate: format.dateToSend(paymentDate) }),
       type,
       bookColumn,
+      payments,
     }, close);
   };
 
@@ -122,16 +142,22 @@ const NewInvoiceModal = ({
 
   /**
    * Render select product
+   * @param {string} id
+   * @param {string} label
+   * @param {string[]} items
+   * @param {number} size
    * @return {SelectForm}
    * @private
    */
-  const _renderSelect = (id, label, items) => (
+  const _renderSelect = ({
+    id, label, items, size,
+  }) => (
     <SelectForm
       label={label}
       value={state[id]}
       name={id}
       onChange={_handleChange}
-      size={6}
+      size={size || 4}
       InputLabelProps={{
         shrink: true,
       }}
@@ -152,10 +178,10 @@ const NewInvoiceModal = ({
    * @return {DatePickerForm}
    * @private
    */
-  const _renderDatePicker = (label, name) => (
+  const _renderDatePicker = (label, name, options) => (
     <DatePickerForm
       clearable
-      size={6}
+      size={options?.size || 4}
       label={label}
       value={state[name]}
       onAccept={date => _handleChangePicker(date, name)}
@@ -172,7 +198,15 @@ const NewInvoiceModal = ({
       label='Concepto'
       margin='normal'
       onChange={_handleChangeAutocomplete}
+      size={4}
     />
+  );
+
+  const _renderPayment = (pass, index) => (
+    <>
+      {_renderDatePicker(`Fecha de cobro ${index + 1}`, `paymentDate${index}`, { size: 6 })}
+      {_renderInput(`amount${index}`, `Cantidad ${index + 1}`, { type: 'number' })}
+    </>
   );
 
   /**
@@ -191,15 +225,17 @@ const NewInvoiceModal = ({
       action={_handleSubmit}
       title='Crear factura'
     >
-      {_renderInput('nInvoice', 'Nº Factura', { autoFocus: true })}
-      {_renderDatePicker('Fecha de registro', 'dateRegister')}
+      {_renderInput('nInvoice', 'Nº Factura', { autoFocus: true, size: 4 })}
+      {_renderDatePicker('Fecha de registro', 'dateRegister', { size: 4 })}
       {_renderDatePicker('Fecha de factura', 'dateInvoice')}
-      {_renderInput('total', 'Total', { type: 'number' })}
+      {_renderInput('total', 'Total', { type: 'number', size: 4 })}
       {_renderAutocomplete()}
-      {_renderSelect('bookColumn', 'Columna', Object.keys(COLUMNS_INVOICES))}
-      {state.bookColumn === COLUMNS_INVOICES.ALQUILER && _renderInput('re', 'Recargo', { type: 'number' })}
-      {_renderDatePicker('Fecha de cobro', 'paymentDate')}
-      {_renderSelect('type', 'Tipo de cobro', TYPE_PAYMENT)}
+      {_renderSelect({ id: 'bookColumn', label: 'Columna', items: Object.keys(COLUMNS_INVOICES) })}
+      {_renderSelect({
+        id: 'type', label: 'Tipo de cobro', items: TYPE_PAYMENT, size: 12,
+      })}
+      <br />
+      {Array.from({ length: 4 }).map(_renderPayment)}
     </ModalGrid>
   );
 };
