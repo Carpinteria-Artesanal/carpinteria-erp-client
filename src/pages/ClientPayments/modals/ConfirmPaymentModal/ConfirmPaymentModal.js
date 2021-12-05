@@ -1,4 +1,7 @@
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
+import {
+  Button, Grid,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { ModalGrid } from 'components/Modals';
 import { DatePickerForm, InputForm, SelectForm } from 'components/Forms';
@@ -17,6 +20,14 @@ const ConfirmPaymentModal = ({
   const [type, setType] = useState('?');
   const [amount, setAmount] = useState(null);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (payment) {
+      setPaymentDate(null);
+      setType('?');
+      setAmount(null);
+    }
+  }, [payment]);
 
   const _handleSend = () => {
     try {
@@ -38,6 +49,10 @@ const ConfirmPaymentModal = ({
         dismissible: true,
       }));
     }
+  };
+
+  const setMaxAmount = () => {
+    setAmount(payment.remaining);
   };
 
   /**
@@ -115,7 +130,16 @@ const ConfirmPaymentModal = ({
         onKeyPress={_handleKeyPress}
         size={4}
         type='number'
+        InputLabelProps={{ shrink: true }}
       />
+      <Grid
+        item
+        md={6}
+        xs={12}
+      >
+        <Button variant='contained' onClick={setMaxAmount}>Importe Restante</Button>
+      </Grid>
+
     </ModalGrid>
   );
 };

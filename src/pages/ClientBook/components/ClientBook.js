@@ -68,7 +68,7 @@ const ClientBook = ({
             setState={setFilters}
           />
         )}
-        <InvoicesTable invoices={invoices} />
+        <InvoicesTable invoices={invoices} type={type} />
       </Container>
     </Page>
   );

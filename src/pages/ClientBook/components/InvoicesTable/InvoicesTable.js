@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import { TableMaterial, TextEuro } from 'components';
-import { BASE_PATH } from 'constants/index';
+import { BASE_PATH, INVOICE_TYPE } from 'constants/index';
 import { format } from 'utils';
 import { useStyles } from './InvoicesTable.styles';
 
-const InvoicesTable = ({ invoices, getInvoices }) => {
+const InvoicesTable = ({ invoices, getInvoices, type }) => {
   const classes = useStyles();
+  const _rowStyle = ({ paid }) => (paid || type !== INVOICE_TYPE ? '' : classes.rowRed);
 
   return (
     <TableMaterial
@@ -39,10 +40,11 @@ const InvoicesTable = ({ invoices, getInvoices }) => {
           icon: VisibilityIcon,
           tooltip: 'Ver',
           component: Link,
-          to: ({ _id }) => `${BASE_PATH}/clientes/facturas/${_id}`,
+          to: ({ _id }) => `${BASE_PATH}/clientes/${type}/${_id}`,
         },
       ]}
       refresh={getInvoices}
+      rowClass={_rowStyle}
     />
   );
 };
@@ -50,6 +52,7 @@ const InvoicesTable = ({ invoices, getInvoices }) => {
 InvoicesTable.propTypes = {
   invoices: PropTypes.array.isRequired,
   getInvoices: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 InvoicesTable.displayName = 'BillingTable';

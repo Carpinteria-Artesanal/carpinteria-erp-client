@@ -41,6 +41,7 @@ const ProductClientModal = ({
       const model = {
         name: state.name,
         price: Number(state.price),
+        code: state.code,
       };
       action(model, close);
     } catch (e) {

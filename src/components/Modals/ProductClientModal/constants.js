@@ -1,13 +1,18 @@
 export const INITIAL_STATE = {
+  code: '',
   name: '',
   price: 0,
 };
 
 export const fields = [
   {
+    id: 'code',
+    label: 'Código',
+    autoFocus: true,
+  },
+  {
     id: 'name',
     label: 'Nombre',
-    autoFocus: true,
   },
   {
     id: 'price',
