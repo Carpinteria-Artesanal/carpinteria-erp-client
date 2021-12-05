@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {
-  useEffect, useMemo, useReducer,
+  useEffect, useMemo, useReducer, useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
@@ -21,6 +21,7 @@ const ProductOrderModal = ({
   ...rest
 }) => {
   const dispatch = useDispatch();
+  const inputCode = useRef(null);
   const [state, setState] = useReducer(
     (oldState, newState) => ({ ...oldState, ...newState }),
     INITIAL_STATE,
@@ -87,7 +88,15 @@ const ProductOrderModal = ({
   const _handleChangeAutocomplete = value => {
     setState({ name: value });
     const selectedProduct = products.find(p => p.name === value);
-    if (selectedProduct) setState({ price: selectedProduct?.price });
+    if (selectedProduct) setState({ price: selectedProduct?.price, code: selectedProduct?.code });
+  };
+
+  const _handleChangeCode = ({ target: { value } }) => {
+    const selected = products.find(product => product.code === value);
+    setState({
+      code: value,
+      name: selected?.name || '',
+    });
   };
 
   const _renderAutocomplete = () => (
@@ -134,6 +143,13 @@ const ProductOrderModal = ({
       title={typeof show === 'boolean' ? 'Añadir producto' : `Editar ${show.name}`}
       {...rest}
     >
+      {_renderInput({
+        id: 'code',
+        label: 'Código',
+        onChange: _handleChangeCode,
+        autoFocus: true,
+        inputRef: inputCode,
+      })}
       {_renderAutocomplete()}
       {fields.map(_renderInput)}
     </ModalGrid>
