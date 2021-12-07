@@ -12,6 +12,7 @@ const EditTotalsModalView = ({
   update,
   id,
   type,
+  onlyTotal = false,
 }) => {
   const [state, setState] = useReducer(
     (oldState, newState) => ({ ...oldState, ...newState }),
@@ -102,8 +103,8 @@ const EditTotalsModalView = ({
       action={_handleSubmit}
     >
       {_renderInput('taxBase', 'Base imponible')}
-      {_renderInput('iva', 'IVA')}
-      {_renderInput('total', 'Total')}
+      {!onlyTotal && _renderInput('iva', 'IVA')}
+      {!onlyTotal && _renderInput('total', 'Total')}
     </ModalGrid>
   );
 };
@@ -117,6 +118,7 @@ EditTotalsModalView.propTypes = {
   id: PropTypes.string.isRequired,
   update: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
+  onlyTotal: PropTypes.bool,
 };
 
 EditTotalsModalView.displayName = 'EditTotalsModalView';

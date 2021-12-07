@@ -19,7 +19,7 @@ const Products = ({
   }, [getProducts]);
 
   return (
-    <Page className={classes.root} title='Productos para clientes'>
+    <Page className={classes.root} title='Productos'>
       <Container maxWidth={false}>
         <Header />
         <ProductsTable products={products} />

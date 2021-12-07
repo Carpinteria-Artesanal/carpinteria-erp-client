@@ -5,22 +5,20 @@ import {
   CardContent,
   CardHeader,
   Divider,
-  Grid,
   IconButton,
   Tooltip,
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import uniqId from 'uniqid';
 
-import { ItemCard } from 'components';
+import { ItemGroupsCard } from 'components';
 import EditInvoiceTotalsModal from 'pages/Invoice/modals/EditInvoiceTotalsModal';
 
 const InvoiceTotals = ({
-  iva,
-  re,
   total,
-  taxBase,
   className,
+  paymentType,
+  paid,
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -57,39 +55,33 @@ const InvoiceTotals = ({
         />
         <Divider />
         <CardContent>
-          <Grid container spacing={3}>
-            {taxBase && (
-              <Grid item xs={12} md={3}>
-                <ItemCard label='Base imponible' value={taxBase} variant='euro' />
-              </Grid>
-            )}
-            {iva && (
-              <Grid item xs={12} md={3}>
-                <ItemCard label='IVA' value={iva} variant='euro' />
-              </Grid>
-            )}
-            {re && (
-              <Grid item xs={12} md={3}>
-                <ItemCard label='RE' value={re} variant='euro' />
-              </Grid>
-            )}
-            <Grid item xs={12} md={3}>
-              <ItemCard label='TOTAL' value={total} variant='euro' />
-            </Grid>
-          </Grid>
+          <ItemGroupsCard
+            items={[{
+              label: 'TOTAL',
+              value: total,
+              variant: 'euro',
+            }, {
+              label: 'Tipo de pago',
+              value: paymentType,
+            }, {
+              label: 'Factura pagada',
+              value: paid,
+              variant: 'boolean',
+            }]}
+            groups={3}
+          />
         </CardContent>
       </Card>
-      <EditInvoiceTotalsModal show={showModal} setShow={setShowModal} />
+      <EditInvoiceTotalsModal show={showModal} setShow={setShowModal} onlyTotal />
     </>
   );
 };
 
 InvoiceTotals.propTypes = {
-  iva: PropTypes.number,
-  re: PropTypes.number,
   total: PropTypes.number.isRequired,
-  taxBase: PropTypes.number,
   className: PropTypes.string.isRequired,
+  paymentType: PropTypes.string.isRequired,
+  paid: PropTypes.bool,
 };
 
 InvoiceTotals.displayName = 'InvoiceTotals';

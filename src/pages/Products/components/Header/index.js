@@ -1,5 +1,4 @@
 import { memo, useCallback, useState } from 'react';
-// import PropTypes from 'prop-types';
 import { Header } from 'components';
 import AddIcon from '@material-ui/icons/Add';
 import NewProductModal from '../../modals/NewProductModal';
@@ -15,7 +14,7 @@ const HeaderProductsClients = () => {
     <>
       <Header
         title='Productos'
-        description='Productos para clientes'
+        description='Productos'
         routes={[{
           link: '/app/clientes',
           title: 'Clientes',

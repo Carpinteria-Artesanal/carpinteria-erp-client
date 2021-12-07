@@ -76,7 +76,7 @@ const NewInvoiceModal = ({
       total: Number(total),
       provider: idProvider,
       concept,
-      type,
+      paymentType: type,
       bookColumn,
       payments,
     }, close);

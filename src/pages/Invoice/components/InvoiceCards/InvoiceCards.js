@@ -3,19 +3,17 @@ import PropTypes from 'prop-types';
 
 import InvoiceData from './components/InvoiceData';
 import InvoiceTotals from './components/InvoiceTotals';
-import InvoicePayment from './components/InvoicePayment';
 import { useStyles } from './InvoiceCards.styles';
 
 const InvoiceCards = ({
-  data, totals, payment, id,
+  data, totals, paymentType, id, paid,
 }) => {
   const classes = useStyles();
 
   return (
     <>
       <InvoiceData {...data} className={classes.data} id={id} />
-      <InvoiceTotals {...totals} className={classes.totals} />
-      {payment && <InvoicePayment {...payment} className={classes.data} />}
+      <InvoiceTotals {...totals} className={classes.totals} paymentType={paymentType} paid={paid} />
     </>
   );
 };
@@ -23,7 +21,8 @@ const InvoiceCards = ({
 InvoiceCards.propTypes = {
   totals: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  payment: PropTypes.object,
+  paymentType: PropTypes.string.isRequired,
+  paid: PropTypes.bool,
   id: PropTypes.string.isRequired,
 };
 

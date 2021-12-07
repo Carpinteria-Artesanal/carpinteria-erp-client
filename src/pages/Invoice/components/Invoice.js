@@ -3,24 +3,24 @@ import { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { Container } from '@material-ui/core';
-import uniqId from 'uniqid';
 
 import { LoadingScreen, Page } from 'components';
-import DeliveryOrderExpand from 'components/DeliveryOrderExpand';
 import Header from './Header';
 import { useStyles } from './Invoice.styles';
 import InvoiceCards from './InvoiceCards';
+import InvoicePayments from './InvoicePayments';
 
 const Invoice = ({
   getInvoice,
   id,
   nameProvider,
   provider,
-  deliveryOrders,
+  payments,
   totals,
   data,
-  payment,
   resetInvoiceState,
+  paymentType,
+  paid,
 }) => {
   const { idInvoice } = useParams();
   const classes = useStyles();
@@ -42,13 +42,8 @@ const Invoice = ({
           nOrder={data.nOrder}
         />
 
-        <InvoiceCards totals={totals} data={data} payment={payment} id={id} />
-
-        <div className={classes.orders}>
-          {deliveryOrders?.map(props => (
-            <DeliveryOrderExpand {...props} key={uniqId()} />
-          ))}
-        </div>
+        <InvoiceCards totals={totals} data={data} paymentType={paymentType} paid={paid} id={id} />
+        <InvoicePayments payments={payments} paymentType={paymentType} paid={paid} />
 
       </Container>
     </Page>
@@ -57,13 +52,14 @@ const Invoice = ({
 
 Invoice.propTypes = {
   getInvoice: PropTypes.func.isRequired,
-  deliveryOrders: PropTypes.array,
+  payments: PropTypes.array,
   id: PropTypes.string,
   nameProvider: PropTypes.string,
   provider: PropTypes.string,
   totals: PropTypes.object,
   data: PropTypes.object,
-  payment: PropTypes.object,
+  paymentType: PropTypes.string.isRequired,
+  paid: PropTypes.bool,
   resetInvoiceState: PropTypes.func.isRequired,
 };
 
