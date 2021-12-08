@@ -7,7 +7,7 @@ const { REACT_APP_VERSION, REACT_APP_ENV_NAME } = process.env;
 const PageView = forwardRef(({ title, children, ...rest }, ref) => {
   const composeTile = useMemo(() => {
     const env = REACT_APP_ENV_NAME ? `[${REACT_APP_ENV_NAME}] ` : '';
-    return `${env}${title} - Arroyo v${REACT_APP_VERSION}`;
+    return `${env}${title} - Carpinteria v${REACT_APP_VERSION}`;
   }, [title]);
 
   return (
