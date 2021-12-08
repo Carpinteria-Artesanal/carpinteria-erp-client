@@ -1,15 +1,21 @@
 import { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import EuroIcon from '@material-ui/icons/Euro';
-import CallSplitIcon from '@material-ui/icons/CallSplit';
 
 import { TableMaterial, TextEuro } from 'components';
 import { addSelectedToState, format, removeSelectedFromState } from 'utils';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import { Link } from 'react-router-dom';
 import ConfirmPaymentModal from '../../modals/ConfirmPaymentModal';
 import DividePaymentModal from '../../modals/DividePaymentModal';
 import { useStyles } from './PaymentsTable.styles';
+import { BASE_PATH } from '../../../../constants';
 
-const PaymentsTable = ({ payments, selected, setSelected }) => {
+const PaymentsTable = ({
+  payments,
+  selected,
+  setSelected,
+}) => {
   const classes = useStyles();
   const [payment, setPayment] = useState(null);
   const [dividePayment, setDividePayment] = useState(null);
@@ -27,15 +33,6 @@ const PaymentsTable = ({ payments, selected, setSelected }) => {
 
   const _handlePaymentButton = row => {
     setPayment(row);
-  };
-
-  /**
-   * Show Modal for divide payment
-   * @param {String} _id
-   * @private
-   */
-  const _handleDivideButton = ({ _id }) => {
-    setDividePayment(_id);
   };
 
   return (
@@ -81,10 +78,10 @@ const PaymentsTable = ({ payments, selected, setSelected }) => {
             onClick: _handlePaymentButton,
           },
           {
-            icon: CallSplitIcon,
-            tooltip: 'Dividir pago',
-            onClick: _handleDivideButton,
-            disabled: ({ payments: paymentMerged }) => !paymentMerged?.length,
+            icon: VisibilityIcon,
+            tooltip: 'Ver',
+            component: Link,
+            to: ({ invoiceId }) => `${BASE_PATH}/facturas/${invoiceId}`,
           },
         ]}
         multiSelect={row => selected.includes(row._id)}
