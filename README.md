@@ -96,7 +96,6 @@ Se sirve en <http://localhost:3000>
 Componente funcional standar de React, con memo:
 ```js
 
-import { memo } from 'react'
 import PropTypes from 'prop-types';
 
 const ComponentName = () =>
@@ -109,7 +108,7 @@ ComponentName.propTypes = {
 
 ComponentName.displayName = 'ComponentName';
 export const story = ComponentName;
-export default memo(ComponentName);
+export default ComponentName;
 ```
 
 ### Container

@@ -1,5 +1,4 @@
 /* eslint-disable react/destructuring-assignment */
-import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, List } from '@material-ui/core';
 import uniqId from 'uniqid';
@@ -8,7 +7,10 @@ import { ItemCard } from 'components/Cards';
 import { sliceToGroups } from 'utils';
 import { useStyles } from './ItemGroupsCard.styles';
 
-const ItemGroupsCard = ({ groups, items }) => {
+const ItemGroupsCard = ({
+  groups,
+  items,
+}) => {
   const classes = useStyles();
   const size = 12 / groups;
 
@@ -21,7 +23,11 @@ const ItemGroupsCard = ({ groups, items }) => {
    * @returns {ItemCard}
    * @private
    */
-  const _renderItem = ({ label, value, variant }) => (
+  const _renderItem = ({
+    label,
+    value,
+    variant,
+  }) => (
     <ItemCard key={uniqId()} label={label} value={value} variant={variant} />
   );
 
@@ -73,4 +79,4 @@ ItemGroupsCard.defaultProps = {
 ItemGroupsCard.displayName = 'ItemGroupsCard';
 
 export const story = ItemGroupsCard;
-export default memo(ItemGroupsCard);
+export default ItemGroupsCard;

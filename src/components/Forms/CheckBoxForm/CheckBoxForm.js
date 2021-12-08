@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Checkbox, FormControlLabel } from '@material-ui/core';
 
@@ -7,7 +6,11 @@ import { Grid, Checkbox, FormControlLabel } from '@material-ui/core';
  * es porque el label es undefined o null, si se al mandar la prop
  * value se manda como value={mivalor || ' '} se soluciona
  */
-const CheckBoxForm = ({ size = 6, label, ...rest }) => (
+const CheckBoxForm = ({
+  size = 6,
+  label,
+  ...rest
+}) => (
   <Grid
     item
     md={size}
@@ -34,4 +37,4 @@ CheckBoxForm.propTypes = {
 CheckBoxForm.displayName = 'CheckBoxForm';
 
 export const story = CheckBoxForm;
-export default memo(CheckBoxForm);
+export default CheckBoxForm;

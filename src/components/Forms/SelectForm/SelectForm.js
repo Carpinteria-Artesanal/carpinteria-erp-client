@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, TextField } from '@material-ui/core';
 
@@ -7,7 +6,11 @@ import { Grid, TextField } from '@material-ui/core';
  * nativo o material. Y documentar opcion y menuItem para usarlo
  * como children del componente.
  */
-const SelectForm = ({ size, children, ...rest }) => (
+const SelectForm = ({
+  size,
+  children,
+  ...rest
+}) => (
   <Grid
     item
     md={size}
@@ -44,4 +47,4 @@ SelectForm.defaultProps = {
 SelectForm.displayName = 'SelectForm';
 
 export const story = SelectForm;
-export default memo(SelectForm);
+export default SelectForm;

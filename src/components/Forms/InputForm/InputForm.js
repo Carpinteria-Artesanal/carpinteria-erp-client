@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, TextField } from '@material-ui/core';
 
@@ -7,7 +6,10 @@ import { Grid, TextField } from '@material-ui/core';
  * es porque el label es undefined o null, si al mandar la prop
  * value se manda como value={mivalor || ' '} se soluciona
  */
-const InputForm = ({ size, ...rest }) => (
+const InputForm = ({
+  size,
+  ...rest
+}) => (
   <Grid
     item
     md={size}
@@ -37,4 +39,4 @@ InputForm.defaultProps = {
 InputForm.displayName = 'InputForm';
 
 export const story = InputForm;
-export default memo(InputForm);
+export default InputForm;

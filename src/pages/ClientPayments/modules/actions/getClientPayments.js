@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { objectToParams } from 'utils';
 import { GET_CLIENT_PAYMENTS } from '../types';
 
 /**
@@ -17,10 +18,14 @@ const _getClientPaymentsSuccess = () => ({
   type: GET_CLIENT_PAYMENTS.SUCCESS,
 });
 
-const _getClientPaymentsSet = ({ invoices }) => ({
+const _getClientPaymentsSet = ({
+  invoices,
+  count,
+}) => ({
   type: GET_CLIENT_PAYMENTS.SET,
   payload: {
     invoices,
+    count,
   },
 });
 
@@ -39,10 +44,10 @@ const _getClientPaymentsError = error => ({
  * Trae las facturas del cliente
  * @returns {function(...[*]=)}
  */
-export const getClientPayments = () => async dispatch => {
+export const getClientPayments = filters => async dispatch => {
   dispatch(_getClientPaymentsRequest());
   try {
-    const { data } = await axios('client/invoices/unpaid');
+    const { data } = await axios(`client/invoices/unpaid${objectToParams(filters)}`);
 
     dispatch(_getClientPaymentsSuccess());
     dispatch(_getClientPaymentsSet(data));
