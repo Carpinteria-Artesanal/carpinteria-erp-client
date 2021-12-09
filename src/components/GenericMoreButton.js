@@ -1,4 +1,4 @@
-import { useRef, useState, memo } from 'react';
+import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   ListItemIcon,
@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function GenericMoreButton(props) {
+const GenericMoreButton = props => {
   const classes = useStyles();
   const moreRef = useRef(null);
   const [openMenu, setOpenMenu] = useState(false);
@@ -87,10 +87,10 @@ function GenericMoreButton(props) {
       </Menu>
     </>
   );
-}
+};
 
 GenericMoreButton.propTypes = {
   className: PropTypes.string,
 };
 
-export default memo(GenericMoreButton);
+export default GenericMoreButton;

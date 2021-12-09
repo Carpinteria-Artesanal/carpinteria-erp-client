@@ -10,7 +10,7 @@ import EuroIcon from '@material-ui/icons/Euro';
 import { useStyles } from './InvoicesTable.styles';
 import ConfirmPaymentModal from '../../modals/ConfirmPaymentModal';
 
-const InvoicesTable = ({ invoices }) => {
+const InvoicesTable = ({ invoices, getClientPayments, count }) => {
   const classes = useStyles();
   const [payment, setPayment] = useState(null);
 
@@ -24,6 +24,16 @@ const InvoicesTable = ({ invoices }) => {
     },
     [],
   );
+
+  const _refresh = ({
+    offset,
+    limit,
+  }) => {
+    getClientPayments({
+      offset,
+      limit,
+    });
+  };
 
   return (
     <>
@@ -67,6 +77,8 @@ const InvoicesTable = ({ invoices }) => {
             to: ({ _id }) => `${BASE_PATH}/clientes/facturas/${_id}`,
           },
         ]}
+        refresh={_refresh}
+        count={count}
       />
       <ConfirmPaymentModal payment={payment} close={_closeModal} />
     </>
@@ -75,8 +87,10 @@ const InvoicesTable = ({ invoices }) => {
 
 InvoicesTable.propTypes = {
   invoices: PropTypes.array.isRequired,
+  getClientPayments: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
 };
 
-InvoicesTable.displayName = 'BillingTable';
+InvoicesTable.displayName = 'PaymentsTable';
 
 export default memo(InvoicesTable);

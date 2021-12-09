@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -76,4 +75,4 @@ InvoicesTable.propTypes = {
 
 InvoicesTable.displayName = 'BillingTable';
 
-export default memo(InvoicesTable);
+export default InvoicesTable;
