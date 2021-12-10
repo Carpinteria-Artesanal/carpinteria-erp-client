@@ -18,6 +18,7 @@ import { format } from '../../../utils';
 const ClientBook = ({
   invoices,
   getClientInvoices,
+  count,
 }) => {
   const classes = useStyles();
   const {
@@ -68,7 +69,7 @@ const ClientBook = ({
             setState={setFilters}
           />
         )}
-        <InvoicesTable invoices={invoices} type={type} />
+        <InvoicesTable invoices={invoices} type={type} getInvoices={_getData} count={count} />
       </Container>
     </Page>
   );
@@ -76,6 +77,7 @@ const ClientBook = ({
 ClientBook.propTypes = {
   invoices: PropTypes.array.isRequired,
   getClientInvoices: PropTypes.func.isRequired,
+  count: PropTypes.number,
 };
 
 ClientBook.displayName = 'ClientBook';

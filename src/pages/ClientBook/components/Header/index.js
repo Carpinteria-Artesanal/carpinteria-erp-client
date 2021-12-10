@@ -35,7 +35,7 @@ const HeaderBook = ({ year, type }) => (
 
 HeaderBook.propTypes = {
   year: PropTypes.number.isRequired,
-  type: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 HeaderBook.displayName = 'HeaderBook';

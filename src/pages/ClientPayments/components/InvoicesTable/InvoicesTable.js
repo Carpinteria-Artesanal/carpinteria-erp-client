@@ -25,16 +25,6 @@ const InvoicesTable = ({ invoices, getClientPayments, count }) => {
     [],
   );
 
-  const _refresh = ({
-    offset,
-    limit,
-  }) => {
-    getClientPayments({
-      offset,
-      limit,
-    });
-  };
-
   return (
     <>
       <TableMaterial
@@ -77,7 +67,7 @@ const InvoicesTable = ({ invoices, getClientPayments, count }) => {
             to: ({ _id }) => `${BASE_PATH}/clientes/facturas/${_id}`,
           },
         ]}
-        refresh={_refresh}
+        refresh={getClientPayments}
         count={count}
       />
       <ConfirmPaymentModal payment={payment} close={_closeModal} />

@@ -1,12 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useEffect } from 'react';
+import {
+  memo, useCallback, useEffect, useReducer,
+} from 'react';
 import { Container } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-import { Page } from 'components';
+import { Page, SearchWithoutState } from 'components';
+
 import Header from './Header';
 import { useStyles } from './ClientPayments.styles';
 import InvoicesTable from './InvoicesTable';
+import { format } from '../../../utils';
+import { DATE_FIELDS, INITIAL_STATE } from '../constants';
 
 const ClientPayments = ({
   invoices,
@@ -15,17 +20,39 @@ const ClientPayments = ({
 }) => {
   const classes = useStyles();
 
-  useEffect(() => {
-    getClientPayments();
-  }, []);
+  const [filters, setFilters] = useReducer(
+    (oldstate, newState) => ({ ...oldstate, ...newState }),
+    INITIAL_STATE,
+  );
 
-  // eslint-disable-next-line no-console
-  console.log(count);
+  const _getData = useCallback((pagination = {}) => {
+    const {
+      from,
+      to,
+    } = filters;
+    getClientPayments({
+      ...(from && { from: format.dateToSend(from) }),
+      ...(to && { to: format.dateToSend(to) }),
+      ...pagination,
+    });
+  }, [filters]);
+
+  useEffect(() => {
+    setFilters(INITIAL_STATE);
+    _getData();
+  }, []);
 
   return (
     <Page className={classes.root} title='Pagos de clientes'>
       <Container maxWidth={false}>
         <Header />
+        <SearchWithoutState
+          dates={DATE_FIELDS}
+          fields={[]}
+          state={filters}
+          get={_getData}
+          setState={setFilters}
+        />
         <InvoicesTable invoices={invoices} getClientPayments={getClientPayments} count={count} />
       </Container>
     </Page>

@@ -8,7 +8,9 @@ import { BASE_PATH, INVOICE_TYPE } from 'constants/index';
 import { format } from 'utils';
 import { useStyles } from './InvoicesTable.styles';
 
-const InvoicesTable = ({ invoices, getInvoices, type }) => {
+const InvoicesTable = ({
+  invoices, getInvoices, type, count,
+}) => {
   const classes = useStyles();
   const _rowStyle = ({ paid }) => (paid || type !== INVOICE_TYPE ? '' : classes.rowRed);
 
@@ -45,6 +47,7 @@ const InvoicesTable = ({ invoices, getInvoices, type }) => {
       ]}
       refresh={getInvoices}
       rowClass={_rowStyle}
+      count={count}
     />
   );
 };
@@ -53,6 +56,7 @@ InvoicesTable.propTypes = {
   invoices: PropTypes.array.isRequired,
   getInvoices: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
+  count: PropTypes.number,
 };
 
 InvoicesTable.displayName = 'BillingTable';

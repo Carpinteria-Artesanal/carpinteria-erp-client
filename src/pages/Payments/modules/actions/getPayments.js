@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { format, objectToParams } from 'utils';
 import { GET_PAYMENTS } from '../types';
 
 /**
@@ -39,11 +40,17 @@ const _getPaymentsError = error => ({
  * Pide los pagos pendientes de cobro
  * @returns {function(...[*]=)}
  */
-export const getPayments = () => async dispatch => {
+export const getPayments = filters => async dispatch => {
   dispatch(_getPaymentRequest());
 
+  const { from, to } = filters || {};
+  const dates = {
+    ...(from && { from: format.dateToSend(from) }),
+    ...(to && { to: format.dateToSend(to) }),
+  };
+
   try {
-    const { data } = await axios('invoices/payments');
+    const { data } = await axios(`invoices/payments${objectToParams(dates)}`);
 
     dispatch(_getPaymentsSuccess());
     dispatch(_getPaymentsSet(data));
