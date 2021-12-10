@@ -20,6 +20,10 @@ const PaymentsTable = ({
     setPayment(row);
   };
 
+  const _closeModal = () => {
+    setPayment(null);
+  };
+
   return (
     <>
       <TableMaterial
@@ -70,7 +74,7 @@ const PaymentsTable = ({
           },
         ]}
       />
-      <ConfirmPaymentModal payment={payment} setShow={setPayment} />
+      <ConfirmPaymentModal payment={payment} close={_closeModal} />
     </>
   );
 };

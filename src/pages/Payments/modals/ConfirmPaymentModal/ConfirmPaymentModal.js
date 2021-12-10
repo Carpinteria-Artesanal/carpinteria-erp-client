@@ -1,135 +1,50 @@
-import { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ModalGrid } from 'components/Modals';
-import { DatePickerForm, InputForm, SelectForm } from 'components/Forms';
-import { TYPE_PAYMENT } from 'constants/invoices';
-import { format } from 'utils';
+
+import { ConfirmModal } from 'components';
 
 const ConfirmPaymentModal = ({
-  confirmPayment, payment, setShow, ...rest
+  confirmPayment, close, payment,
 }) => {
-  const [paymentDate, setPaymentDate] = useState(null);
-  const [type, setType] = useState('?');
-  const [numCheque, setNumCheque] = useState(null);
-
-  useEffect(() => {
-    if (payment) {
-      setType(payment.type);
-      setPaymentDate(payment.paymentDate || null);
-      setNumCheque(null);
-    }
-  }, [payment]);
-
-  const _close = () => {
-    setShow(false);
-  };
-
+  // eslint-disable-next-line no-console
+  console.log(payment);
+  /**
+   * Send email to the client for change password
+   * @private
+   */
   const _handleSend = () => {
-    confirmPayment(payment._id, {
-      paymentDate: format.dateToSend(paymentDate),
-      type,
-      ...(numCheque && { numCheque }),
-    }, _close);
+    confirmPayment({
+      id: payment.id, invoice: payment.invoiceId, callback: close,
+    });
   };
-
-  /**
-   * Handle change picker
-   * @param {String} date
-   * @private
-   */
-  const _handleChangePicker = date => {
-    setPaymentDate((date));
-  };
-
-  /**
-   * Handle change select
-   * @param {String} string
-   * @private
-   */
-  const _handleSelect = ({ target: { value } }) => {
-    setType(value);
-  };
-
-  /**
-   * Handle change number of cheque
-   * @param {String} value
-   * @private
-   */
-  const _handleCheque = ({ target: { value } }) => {
-    setNumCheque(value);
-  };
-
-  /**
-   * Handle press enter key
-   * @param {string} key
-   * @private
-   */
-  const _handleKeyPress = ({ key }) => {
-    if (key === 'Enter') _handleSend();
-  };
-
-  /**
-   * Render input of number cheque
-   * @returns {InputForm|null}
-   * @private
-   */
-  const _renderNumberCheque = () => (
-    type === 'Talón'
-      ? (
-        <InputForm
-          label='Número de talón'
-          value={numCheque}
-          onChange={_handleCheque}
-          onKeyPress={_handleKeyPress}
-          size={4}
-        />
-      )
-      : null
-  );
 
   return (
-    <ModalGrid
-      {...rest}
+    <ConfirmModal
       show={Boolean(payment)}
-      title='Confirmación de factura'
+      close={close}
+      title='Aplicar pago'
+      description='¿Seguro que marcar este pago como pagado?'
       action={_handleSend}
-      close={_close}
-    >
-      <DatePickerForm
-        clearable
-        size={4}
-        label='Fecha de cobro'
-        value={paymentDate}
-        onAccept={_handleChangePicker}
-      />
-
-      <SelectForm
-        label='Tipo de cobro'
-        value={type}
-        onChange={_handleSelect}
-        size={4}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        onKeyPress={_handleKeyPress}
-      >
-        {TYPE_PAYMENT?.map(item => (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        ))}
-      </SelectForm>
-      {_renderNumberCheque()}
-    </ModalGrid>
+      actions={[
+        {
+          onClick: close,
+          value: 'Cerrar',
+        },
+        {
+          onClick: _handleSend,
+          color: 'secondary',
+          variant: 'contained',
+          value: 'Pagar',
+        },
+      ]}
+    />
   );
 };
 
 ConfirmPaymentModal.propTypes = {
-  setShow: PropTypes.func,
-  payment: PropTypes.object,
+  close: PropTypes.func.isRequired,
   confirmPayment: PropTypes.func.isRequired,
+  payment: PropTypes.object,
 };
 
 ConfirmPaymentModal.displayName = 'ConfirmPaymentModal';
-export const story = ConfirmPaymentModal;
-export default memo(ConfirmPaymentModal);
+export default ConfirmPaymentModal;

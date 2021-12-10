@@ -50,11 +50,11 @@ const _confirmPaymentError = error => ({
  * @param {Object} data
  * @param {function} callback
  */
-export const confirmPayment = (id, data, callback) => async dispatch => {
+export const confirmPayment = ({ id, invoice, callback }) => async dispatch => {
   dispatch(_confirmPaymentRequest());
 
   try {
-    const response = await axios.patch(`payments/${id}/confirm`, data);
+    const response = await axios.patch(`invoices/${invoice}/payments/${id}`);
 
     dispatch(_confirmPaymentSuccess());
     dispatch(_confirmPaymentSet(response));

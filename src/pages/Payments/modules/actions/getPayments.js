@@ -43,7 +43,7 @@ export const getPayments = () => async dispatch => {
   dispatch(_getPaymentRequest());
 
   try {
-    const { data } = await axios('payments');
+    const { data } = await axios('invoices/payments');
 
     dispatch(_getPaymentsSuccess());
     dispatch(_getPaymentsSet(data));
