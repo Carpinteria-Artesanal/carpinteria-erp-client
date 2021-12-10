@@ -17,3 +17,4 @@ export { default as PricesChart } from './PricesChart';
 export { default as SearchForm } from './SearchForm';
 export { default as ClientDocument } from '../pages/ClientDocument';
 export { default as SearchWithoutState } from './SearchWithoutState';
+export { default as BannerPaid } from './BannerPaid';

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { Container } from '@material-ui/core';
 
-import { LoadingScreen, Page } from 'components';
+import { LoadingScreen, Page, BannerPaid } from 'components';
 import Header from './Header';
 import { useStyles } from './Invoice.styles';
 import InvoiceCards from './InvoiceCards';
@@ -41,7 +41,7 @@ const Invoice = ({
           nameProvider={nameProvider}
           nOrder={data.nOrder}
         />
-
+        <BannerPaid paid={paid} className={classes.alert} />
         <InvoiceCards totals={totals} data={data} paymentType={paymentType} paid={paid} id={id} />
         <InvoicePayments payments={payments} paymentType={paymentType} paid={paid} />
 

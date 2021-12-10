@@ -13,4 +13,8 @@ export const useStyles = makeStyles(theme => ({
   orders: {
     marginTop: theme.spacing(2),
   },
+  alert: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
 }));

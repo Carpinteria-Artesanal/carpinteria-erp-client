@@ -39,14 +39,13 @@ const _getInvoicesError = error => ({
 
 /**
  * Trae las facturas
- * @param {String} year
  * @param {Object} params
  * @returns {function(...[*]=)}
  */
-export const getInvoices = (year, params) => async dispatch => {
+export const getInvoices = params => async dispatch => {
   dispatch(_getInvoicesRequest());
   try {
-    const { data } = await axios(`invoices?year=${year}${objectToParams(params, false)}`);
+    const { data } = await axios(`invoices${objectToParams(params)}`);
 
     dispatch(_getInvoicesSuccess());
     dispatch(_getInvoicesSet(data));

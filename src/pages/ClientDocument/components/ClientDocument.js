@@ -9,13 +9,13 @@ import { useParams } from 'react-router';
 import {
   LoadingScreen, Page, DeleteProductInvoiceModal, ProductsInvoice,
 } from 'components';
-import { Alert } from '@material-ui/lab';
 import ProductOrderModal from '../modals/ProductOrderModal/ProductOrderModalContainer';
 import { useStyles } from './ClientDocument.styles';
 import ClientInvoiceCards from './ClientInvoiceCards';
 import Header from './Header';
 import ClientInvoicePayments from './ClientInvoicePayments';
 import { INVOICE_TYPE } from '../constants';
+import BannerPaid from '../../../components/BannerPaid';
 
 const ClientDocument = ({
   getClientDocument,
@@ -87,11 +87,7 @@ const ClientDocument = ({
 
         {type === INVOICE_TYPE
           && (
-            <Alert severity={paid ? 'success' : 'error'} className={classes.alert} variant='filled'>
-              {!paid && 'NO '}
-              PAGADO
-              {remaining > 0 && ` / Pendiente: ${remaining} €`}
-            </Alert>
+            <BannerPaid paid={paid} className={classes.alert} remaining={remaining} />
           )}
 
         <ProductsInvoice

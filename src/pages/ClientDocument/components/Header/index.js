@@ -50,34 +50,35 @@ const HeaderClientInvoice = ({
         ]}
         title={typeName}
         description=''
-        buttons={[{
-          onClick: _handleClickDownload(),
-          color: 'primary',
-          Icon: GetAppIcon,
-          label: 'Descargar',
-          variant: 'contained',
-        }, {
-          variant: 'outlined',
-          color: 'default',
-          onClick: () => setShowDeleteModal(true),
-          Icon: Trash2,
-          label: 'Eliminar',
-        }, {
-          variant: 'contained',
-          color: 'secondary',
-          onClick: () => setShowConfirmModal(true),
-          Icon: CheckCircleOutlinedIcon,
-          disableSvg: true,
-          label: 'Confirmar',
-          disabled: Boolean(nInvoice),
-        }, {
-          variant: 'contained',
-          color: 'primary',
-          onClick: _handleClickNewProduct,
-          Icon: PlusCircleIcon,
-          disableSvg: true,
-          label: 'Nuevo producto',
-        }]}
+        buttons={[
+          {
+            onClick: _handleClickDownload(),
+            color: 'primary',
+            Icon: GetAppIcon,
+            label: 'Descargar',
+            variant: 'contained',
+          }, {
+            variant: 'outlined',
+            color: 'default',
+            onClick: () => setShowDeleteModal(true),
+            Icon: Trash2,
+            label: 'Eliminar',
+          }, {
+            variant: 'contained',
+            color: 'secondary',
+            onClick: () => setShowConfirmModal(true),
+            Icon: CheckCircleOutlinedIcon,
+            disableSvg: true,
+            label: 'Confirmar',
+            disabled: Boolean(nInvoice),
+          }, {
+            variant: 'contained',
+            color: 'primary',
+            onClick: _handleClickNewProduct,
+            Icon: PlusCircleIcon,
+            disableSvg: true,
+            label: 'Nuevo producto',
+          }]}
       />
       <ConfirmInvoiceModal show={showConfirmModal} setShow={setShowConfirmModal} type={type} />
       <DeleteInvoiceModal show={showDeleteModal} setShow={setShowDeleteModal} type={type} />
