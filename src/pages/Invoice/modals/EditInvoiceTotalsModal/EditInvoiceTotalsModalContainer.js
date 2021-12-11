@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { updateDataInvoice } from 'pages/Invoice/modules/actions';
 import { EditTotalsModal } from 'components';
 
-const mapStateToProps = ({ document: { totals, id } }) => ({
+const mapStateToProps = ({ invoice: { totals, id } }) => ({
   ...totals,
   id,
 });

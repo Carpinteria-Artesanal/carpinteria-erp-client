@@ -54,7 +54,6 @@ const EditTotalsModalView = ({
   };
 
   const _handleSubmit = () => {
-    console.warn(id);
     update({
       id,
       type,
@@ -102,9 +101,9 @@ const EditTotalsModalView = ({
       title='Editar totales'
       action={_handleSubmit}
     >
-      {_renderInput('taxBase', 'Base imponible')}
+      {!onlyTotal && _renderInput('taxBase', 'Base imponible')}
       {!onlyTotal && _renderInput('iva', 'IVA')}
-      {!onlyTotal && _renderInput('total', 'Total')}
+      {_renderInput('total', 'Total')}
     </ModalGrid>
   );
 };

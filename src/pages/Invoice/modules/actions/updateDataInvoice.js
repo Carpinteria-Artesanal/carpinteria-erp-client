@@ -54,7 +54,7 @@ const _updateDataInvoiceError = error => ({
  * @param {function} callback
  * @returns {function(...[*]=)}
  */
-export const updateDataInvoice = (id, newData, callback) => async dispatch => {
+export const updateDataInvoice = ({ id, newData, callback }) => async dispatch => {
   dispatch(_updateDataInvoiceRequest());
 
   try {
