@@ -1,5 +1,5 @@
 import {
-  memo, useCallback, useState,
+  memo, useCallback, useReducer, useState,
 } from 'react';
 import { Box, Container } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import { BASE_PATH } from 'constants/index';
 import {
-  Header, Page, SearchForm, TableMaterial,
+  Header, Page, SearchWithoutState, TableMaterial,
 } from 'components';
 
 import { fields, INITIAL_STATE } from '../constans';
@@ -19,9 +19,30 @@ import NewProviderModal from '../modals/NewClientModal';
 const Clients = ({
   clients,
   getClients,
+  count,
 }) => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
+
+  const [filters, setFilters] = useReducer(
+    (oldstate, newState) => ({ ...oldstate, ...newState }),
+    INITIAL_STATE,
+  );
+
+  const _getData = useCallback((pagination = {}) => {
+    const {
+      name,
+      phone,
+      email,
+    } = filters;
+
+    getClients({
+      ...(name && { name }),
+      ...(phone && { phone }),
+      ...(email && { email }),
+      ...pagination,
+    });
+  }, [filters]);
 
   const _hrefRow = ({ _id }) => `${BASE_PATH}/clientes/${_id}`;
 
@@ -46,10 +67,12 @@ const Clients = ({
               },
             ]}
           />
-          <SearchForm
-            get={getClients}
+          <SearchWithoutState
+            get={_getData}
             fields={fields}
             initialState={INITIAL_STATE}
+            state={filters}
+            setState={setFilters}
           />
           <Box mt={3}>
             <TableMaterial
@@ -73,7 +96,7 @@ const Clients = ({
                 },
               ]}
               data={clients}
-              title={`Clientes (${clients.length})`}
+              title={`Clientes (${count})`}
               actions={[
                 {
                   icon: VisibilityIcon,
@@ -83,6 +106,9 @@ const Clients = ({
                 },
               ]}
               href={_hrefRow}
+              count={count}
+              rowsPerPageOptions={[20, 50, 100]}
+              refresh={_getData}
             />
           </Box>
         </Container>
@@ -95,6 +121,7 @@ const Clients = ({
 Clients.propTypes = {
   clients: PropTypes.array.isRequired,
   getClients: PropTypes.func.isRequired,
+  count: PropTypes.number,
 };
 
 Clients.displayName = 'Clients';

@@ -6,6 +6,7 @@ import {
 
 const INITIAL_STATE = {
   clients: [],
+  count: 0,
 };
 
 const ACTION_HANDLERS = {

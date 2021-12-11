@@ -18,10 +18,11 @@ const _getClientsSuccess = () => ({
   type: GET_CLIENTS.SUCCESS,
 });
 
-const _getClientsSet = clients => ({
+const _getClientsSet = ({ clients, count }) => ({
   type: GET_CLIENTS.SET,
   payload: {
     clients,
+    count,
   },
 });
 
