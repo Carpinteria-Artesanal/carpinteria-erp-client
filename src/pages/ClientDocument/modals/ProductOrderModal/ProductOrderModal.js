@@ -96,6 +96,7 @@ const ProductOrderModal = ({
     setState({
       code: value,
       name: selected?.name || '',
+      price: selected?.price,
     });
   };
 

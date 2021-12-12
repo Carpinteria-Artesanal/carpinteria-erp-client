@@ -3,6 +3,7 @@ export const INITIAL_STATE = {
   iva: 0,
   price: 0,
   unit: 0,
+  code: '',
 };
 
 export const fields = [
