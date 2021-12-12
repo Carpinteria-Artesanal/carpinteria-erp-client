@@ -14,7 +14,7 @@ const InvoicesTable = ({
 }) => {
   const classes = useStyles();
 
-  const _rowStyle = ({ payment }) => (payment?.paid ? '' : classes.rowRed);
+  const _rowStyle = ({ paid }) => (paid ? '' : classes.rowRed);
 
   return (
     <TableMaterial
