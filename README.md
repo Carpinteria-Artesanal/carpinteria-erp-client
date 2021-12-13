@@ -1,36 +1,16 @@
-# ARROYO CLIENT
+# CARPTINTERÍA CLIENT
 
-![](https://github.com/soker90/arroyo-erp-client/workflows/Node.js%20CI/badge.svg)
-[![dependencies Status](https://david-dm.org/soker90/arroyo-erp-client/status.svg)](https://david-dm.org/soker90/arroyo-erp-client)
-[![devDependencies Status](https://david-dm.org/soker90/arroyo-erp-client/dev-status.svg)](https://david-dm.org/soker90/arroyo-erp-client?type=dev)
-[![codecov](https://codecov.io/gh/soker90/arroyo-erp-client/branch/master/graph/badge.svg?token=YAYNYU2EI2)](https://codecov.io/gh/soker90/arroyo-erp-client)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=soker90_arroyo-erp-client&metric=alert_status)](https://sonarcloud.io/dashboard?id=soker90_arroyo-erp-client)
-[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://soker90.github.io/arroyo-erp-client/)
+![](https://github.com/Carpinteria-Artesanal/carpinteria-erp-client/workflows/Node.js%20CI/badge.svg)
+[![dependencies Status](https://david-dm.org/Carpinteria-Artesanal/carpinteria-erp-client/status.svg)](https://david-dm.org/Carpinteria-Artesanal/carpinteria-erp-client)
+[![devDependencies Status](https://david-dm.org/Carpinteria-Artesanal/carpinteria-erp-client/dev-status.svg)](https://david-dm.org/Carpinteria-Artesanal/carpinteria-erp-client?type=dev)
 
 ## Descripción
-Parte frontal del proyecto de ERP Arroyo, un backoffice para la gestión administrativa y contable de pequeñas empresas.
+Parte frontal del proyecto de ERP Carpintería, un backoffice para la gestión administrativa y contable de pequeñas empresas.
 
 Es un proyecto desarrollado en `React`. (v.17.0.1) y gestiona el **state** de la aplicación mediante `redux` (v.4.0.5). Debe servirse como **SPA** redirigiendo las peticiones a `index.html` para que el router de react `react-router-dom` (v.5.2.0) se haga cargo de la gestión de las **URLS**.
 
-## TODO
-
-- DOCS: Readme and more Storybook
-- TESTING - In Progress: Storybook + react testing library para test unitarios
-- TESTING - In Progress: Storybook + Chromatic para pruebas de regresión visual
-- TESTING: Preparar un entorno para tests e2e con cypress.
-- TESTING: React testing library para custom hooks :heart_eyes:
-- No tiene sentido el Modal Root, habría que refactoizar los primeros modales para eliminarlo.
-- Acoplar el estado de productos a las rutas que lo usan, y valorar hacer lo mismo con provider (ha crecido y puede carecer de sentido como está)
-- ¡ISSUES!
-
-Futuros epics:
- - Facturación de clientes (facuturas, generación de pdf, mail, cobros...)
- - Generación de los excell necesarios
- - Dashboard funcional y gráfica muuchas gráficas
- - ¿Temas de autónomos?
-
 ## Changelog
-- Sin changelog hasta la versión 1.0
+- Versión inicial
 
 ## Testing
 
