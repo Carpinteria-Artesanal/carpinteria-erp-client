@@ -33,6 +33,7 @@ const _updateDataInvoiceSet = ({ data, totals }) => ({
   payload: {
     ...(data && { data }),
     ...(totals && { totals }),
+    ...(totals.paymentType && { paymentType: totals.paymentType }),
   },
 });
 
