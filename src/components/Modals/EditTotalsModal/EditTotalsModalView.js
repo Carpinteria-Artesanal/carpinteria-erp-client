@@ -1,7 +1,8 @@
 import { useReducer } from 'react';
 import PropTypes from 'prop-types';
 
-import { ModalGrid, InputForm } from 'components';
+import { ModalGrid, InputForm, SelectForm } from 'components';
+import { TYPE_PAYMENT } from '../../../constants';
 
 const EditTotalsModalView = ({
   show,
@@ -12,6 +13,7 @@ const EditTotalsModalView = ({
   update,
   id,
   type,
+  paymentType,
   onlyTotal = false,
 }) => {
   const [state, setState] = useReducer(
@@ -20,6 +22,7 @@ const EditTotalsModalView = ({
       total,
       iva,
       taxBase,
+      paymentType,
     },
   );
 
@@ -47,6 +50,15 @@ const EditTotalsModalView = ({
     const number = parseFloat(value);
     setState({ [name]: number });
     setErrors({ [name]: (typeof number !== 'number') });
+  };
+
+  /**
+   * Handle change select
+   * @param {String} string
+   * @private
+   */
+  const _handleSelect = ({ target: { value } }) => {
+    setState({ paymentType: value });
   };
 
   const _close = () => {
@@ -104,6 +116,24 @@ const EditTotalsModalView = ({
       {!onlyTotal && _renderInput('taxBase', 'Base imponible')}
       {!onlyTotal && _renderInput('iva', 'IVA')}
       {_renderInput('total', 'Total')}
+      {onlyTotal && (
+      <SelectForm
+        label='Forma de pago'
+        value={state.paymentType}
+        onChange={_handleSelect}
+        size={4}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onKeyPress={_handleKeyPress}
+      >
+        {TYPE_PAYMENT?.map(item => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </SelectForm>
+      )}
     </ModalGrid>
   );
 };
@@ -116,8 +146,9 @@ EditTotalsModalView.propTypes = {
   taxBase: PropTypes.number,
   id: PropTypes.string.isRequired,
   update: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   onlyTotal: PropTypes.bool,
+  paymentType: PropTypes.string,
 };
 
 EditTotalsModalView.displayName = 'EditTotalsModalView';
