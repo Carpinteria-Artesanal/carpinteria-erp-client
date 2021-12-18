@@ -11,7 +11,7 @@ import { useStyles } from './PaymentsTable.styles';
 import { BASE_PATH } from '../../../../constants';
 
 const PaymentsTable = ({
-  payments,
+  payments, sum,
 }) => {
   const classes = useStyles();
   const [payment, setPayment] = useState(null);
@@ -73,6 +73,7 @@ const PaymentsTable = ({
             to: ({ invoiceId }) => `${BASE_PATH}/facturas/${invoiceId}`,
           },
         ]}
+        title={sum && `Total: ${sum} €`}
       />
       <ConfirmPaymentModal payment={payment} close={_closeModal} />
     </>
@@ -81,6 +82,7 @@ const PaymentsTable = ({
 
 PaymentsTable.propTypes = {
   payments: PropTypes.array.isRequired,
+  sum: PropTypes.number,
 };
 
 PaymentsTable.displayName = 'PaymentsTable';

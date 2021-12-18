@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {
-  memo, useEffect, useReducer,
+  useEffect, useReducer,
 } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -141,4 +141,4 @@ SearchForm.propTypes = {
 
 SearchForm.displayName = 'SearchForm';
 
-export default memo(SearchForm);
+export default SearchForm;

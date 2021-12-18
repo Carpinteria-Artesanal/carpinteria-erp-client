@@ -18,10 +18,11 @@ const _getPaymentsSuccess = () => ({
   type: GET_PAYMENTS.SUCCESS,
 });
 
-const _getPaymentsSet = payments => ({
+const _getPaymentsSet = ({ payments, sum }) => ({
   type: GET_PAYMENTS.SET,
   payload: {
     payments,
+    sum,
   },
 });
 
