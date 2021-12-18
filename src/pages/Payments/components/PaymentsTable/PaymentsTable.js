@@ -73,7 +73,7 @@ const PaymentsTable = ({
             to: ({ invoiceId }) => `${BASE_PATH}/facturas/${invoiceId}`,
           },
         ]}
-        title={sum && `Total: ${sum} €`}
+        title={sum && `Total: ${format.euro(sum)}`}
       />
       <ConfirmPaymentModal payment={payment} close={_closeModal} />
     </>
