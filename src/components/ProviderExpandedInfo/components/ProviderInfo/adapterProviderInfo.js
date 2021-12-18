@@ -1,5 +1,5 @@
 export const adapterProviderInfo = ({
-  name, address, city, postalCode, province, phone, email, businessName, cif, note, hasCanal,
+  name, address, city, postalCode, province, phone, email, businessName, cif, note,
 }) => [
   {
     label: 'Nombre',
@@ -40,9 +40,5 @@ export const adapterProviderInfo = ({
   {
     label: 'Nota',
     value: note,
-  },
-  {
-    label: 'Tiene canal',
-    value: hasCanal ? 'Sí' : 'No',
   },
 ];

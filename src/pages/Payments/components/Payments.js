@@ -15,6 +15,7 @@ import { DATE_FIELDS } from '../constants';
 const Payments = ({
   payments,
   getPayments,
+  sum,
 }) => {
   const classes = useStyles();
 
@@ -31,7 +32,7 @@ const Payments = ({
           dates={DATE_FIELDS}
           get={getPayments}
         />
-        <PaymentsTable payments={payments} />
+        <PaymentsTable payments={payments} sum={sum} />
       </Container>
     </Page>
   );
@@ -39,6 +40,7 @@ const Payments = ({
 Payments.propTypes = {
   payments: PropTypes.array.isRequired,
   getPayments: PropTypes.func.isRequired,
+  sum: PropTypes.number,
 };
 
 Payments.displayName = 'Payments';

@@ -22,7 +22,7 @@ export const CONCEPT = {
 };
 
 export const TYPE_PAYMENT = [
-  '?', 'Efectivo', 'Talón', 'Transferencia',
+  '?', 'Efectivo', 'Talón', 'Transferencia', 'Recibo bancario',
 ];
 
 export const INVOICES_CONCEPTS = [

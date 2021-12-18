@@ -5,6 +5,7 @@ import {
 
 const INITIAL_STATE = {
   payments: [],
+  sum: undefined,
 };
 
 const ACTION_HANDLERS = {
