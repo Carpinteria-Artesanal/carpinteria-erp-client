@@ -59,6 +59,7 @@ const ProductOrderModal = ({
         price: Number(state.price),
         unit: Number(state.unit),
         iva: Number(state.iva),
+        code: state.code,
       };
       (typeof show === 'boolean' ? createProduct : updateProduct)({
         type,
