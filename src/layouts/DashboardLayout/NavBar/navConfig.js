@@ -48,6 +48,11 @@ export const navConfig = [
         ],
       },
       {
+        title: 'Facturación',
+        icon: DescriptionIcon,
+        href: `/app/clientes/facturacion/${year}`,
+      },
+      {
         title: 'Productos',
         icon: ShoppingCart,
         href: '/app/clientes/productos',

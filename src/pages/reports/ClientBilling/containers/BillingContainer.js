@@ -1,9 +1,12 @@
 import { connect } from 'react-redux';
 
+import { Billing } from 'components';
 import { getBilling } from '../modules/actions';
-import Billing from '../../Billing/components/Billing';
 
-const mapStateToProps = ({ billing }) => billing;
+const mapStateToProps = ({ clientBilling }) => ({
+  ...clientBilling,
+  type: 'clientes',
+});
 
 const mapDispatchToProps = {
   getBilling,

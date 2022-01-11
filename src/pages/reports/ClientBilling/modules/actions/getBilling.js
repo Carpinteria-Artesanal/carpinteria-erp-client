@@ -42,9 +42,11 @@ const _getInvoicesError = error => ({
  */
 export const getBilling = year => async dispatch => {
   dispatch(_getInvoicesRequest());
+  // eslint-disable-next-line no-console
+  console.log('==>');
 
   try {
-    const { data } = await axios(`billings/client?year=${year}`);
+    const { data } = await axios(`client/invoices/billing?year=${year}`);
 
     dispatch(_getInvoicesSuccess());
     dispatch(_getInvoicesSet(data));

@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
@@ -7,17 +6,31 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import { Header } from 'components';
 import { NavLink } from 'react-router-dom';
 import { downloadFile } from 'utils';
+import {
+  API_CLIENT_BILLING_DOWNLOAD, API_PROVIDER_BILLING_DOWNLOAD,
+  PATH_CLIENT_BILLING,
+  PATH_PROVIDER_BILLING,
+} from 'constants/paths';
+import { isClient } from '../utils';
 
-const HeaderBook = ({ year }) => {
+const getRoute = type => (isClient(type) ? PATH_CLIENT_BILLING : PATH_PROVIDER_BILLING);
+const getDownloadLink = type => (isClient(type)
+  ? API_CLIENT_BILLING_DOWNLOAD
+  : API_PROVIDER_BILLING_DOWNLOAD);
+
+const HeaderBook = ({
+  year,
+  type,
+}) => {
   const _handleClickDownload = short => () => downloadFile(
-    `billings/export?year=${year}${short ? '&short=true' : ''}`,
-    `Facturación ${year}.ods`,
+    `${getDownloadLink(type)}/export?year=${year}${short ? '&short=true' : ''}`,
+    `${short ? '347 -' : 'Facturación'} ${type || ''} ${year}.ods`,
   );
 
   return (
     <Header
       title='Facturación'
-      description={`Facturación ${year}`}
+      description={`Facturación ${type || ''} ${year}`}
       buttons={[
         {
           onClick: _handleClickDownload(true),
@@ -34,14 +47,14 @@ const HeaderBook = ({ year }) => {
         },
         {
           component: NavLink,
-          to: `/app/informes/facturacion/${year - 1}`,
+          to: `${getRoute(type)}/${year - 1}`,
           Icon: SkipPreviousIcon,
           label: `${year - 1}`,
           variant: 'outlined',
         },
         {
           component: NavLink,
-          to: `/app/informes/facturacion/${year + 1}`,
+          to: `${getRoute(type)}/${year + 1}`,
           Icon: SkipNextIcon,
           label: `${year + 1}`,
           variant: 'outlined',
@@ -53,8 +66,9 @@ const HeaderBook = ({ year }) => {
 
 HeaderBook.propTypes = {
   year: PropTypes.number.isRequired,
+  type: PropTypes.string,
 };
 
 HeaderBook.displayName = 'HeaderBilling';
 export const story = HeaderBook;
-export default memo(HeaderBook);
+export default HeaderBook;

@@ -100,6 +100,11 @@ const routesConfig = [
           },
           {
             exact: true,
+            path: '/app/clientes/facturacion/:year',
+            component: lazy(() => import('pages/reports/ClientBilling')),
+          },
+          {
+            exact: true,
             path: '/app/clientes/libro/:type/:year',
             component: lazy(() => import('pages/ClientBook')),
           },
